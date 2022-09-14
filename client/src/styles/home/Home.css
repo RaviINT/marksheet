@@ -1,0 +1,68 @@
+#container {
+  width: 70%;
+  border: 3px solid black;
+  height: auto;
+  margin: auto;
+  margin-top: 20px;
+}
+#heading1 {
+  width: 100%;
+  text-align: center;
+  font-size: 25px;
+  color: red;
+  font-weight: bold;
+  border-bottom: 2px solid black;
+}
+#heading2 {
+  width: 100%;
+  text-align: center;
+  font-size: 21px;
+  color: black;
+  font-weight: bold;
+  border-bottom: 2px solid black;
+}
+#section {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: auto;
+}
+
+
+.box1 {
+  width: 100%;
+}
+.box2 {
+  width: 100%;
+}
+#cgp {
+  display: flex;
+  justify-content: space-between;
+  width: 98%;
+  margin: auto;
+}
+.cgp_name {
+  font-weight: bold;
+}
+#remark {
+  margin-left: 10px;
+}
+#exce {
+  font-weight: bold;
+}
+#sign {
+  display: flex;
+  justify-content: space-between;
+  width: 98%;
+  margin: auto;
+  margin-top: 80px;
+  font-style: italic;
+  font-family: cursive;
+}
+
+@media screen and (max-width: 800px) {
+  #section {
+    display: block;
+  }
+}
+

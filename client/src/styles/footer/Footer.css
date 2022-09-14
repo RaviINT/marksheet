@@ -1,0 +1,29 @@
+#heading {
+  text-align: center;
+  font-size: 30px;
+}
+#table_box {
+  display: flex;
+  justify-content: space-around;
+  width: 50%;
+  margin: auto;
+}
+.bodr {
+  border: 1px solid black;
+}
+#foot_heading {
+  border-top: 2px solid black;
+  text-align: center;
+  font-weight: bold;
+  font-style: italic;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+#foot_head {
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+}
+.single_head {
+  font-size: 25px;
+}

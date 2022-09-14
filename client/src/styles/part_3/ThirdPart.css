@@ -1,0 +1,14 @@
+.heading {
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+}
+#table {
+  width: 98%;
+  margin: auto;
+  overflow-x: auto;
+}
+.term {
+  font-weight: bold;
+  text-transform: uppercase;
+}

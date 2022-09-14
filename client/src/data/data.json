@@ -1,0 +1,113 @@
+{
+  "part_1": [
+    {
+      "id": 1,
+      "subject": "English",
+      "fa": 10,
+      "fa_oral": 10,
+      "sa": 10,
+      "sa_oral": 10,
+      "total": 50
+    },
+    {
+      "id": 2,
+      "subject": "Hindi",
+      "fa": 10,
+      "fa_oral": 10,
+      "sa": 10,
+      "sa_oral": 10,
+      "total": 40
+    },
+    {
+      "id": 3,
+      "subject": "SST",
+      "fa": 10,
+      "fa_oral": 10,
+      "sa": 10,
+      "sa_oral": 10,
+      "total": 40
+    },
+    {
+      "id": 4,
+      "subject": "Science",
+      "fa": 10,
+      "fa_oral": 10,
+      "sa": 10,
+      "sa_oral": 10,
+      "total": 40
+    },
+    {
+      "id": 5,
+      "subject": "Maths",
+      "fa": 10,
+      "fa_oral": 10,
+      "sa": 10,
+      "sa_oral": 10,
+      "total": 40
+    },
+    {
+      "id": 6,
+      "subject": "EVS",
+      "fa": 10,
+      "fa_oral": 10,
+      "sa": 10,
+      "sa_oral": 10,
+      "total": 40
+    }
+  ],
+  "part_2": [
+    {
+      "id": 1,
+      "name": "Development",
+      "grade": "A+"
+    },
+    {
+      "id": 2,
+      "name": "Attitude",
+      "grade": "B+"
+    },
+    {
+      "id": 3,
+      "name": "Responsilbility",
+      "grade": "B+"
+    },
+    {
+      "id": 4,
+      "name": "Self Confidence",
+      "grade": "B+"
+    },
+    {
+      "id": 5,
+      "name": "Participations in Group Work",
+      "grade": "B+"
+    },
+    {
+      "id": 6,
+      "name": "Neetness",
+      "grade": "B+"
+    },
+    {
+      "id": 7,
+      "name": "Music",
+      "grade": "B+"
+    },
+    {
+      "id": 8,
+      "name": "Disciplane",
+      "grade": "B+"
+    },
+    {
+      "id": 9,
+      "name": "Hard Work",
+      "grade": "B+"
+    }
+  ],
+  "attendence": [
+    {
+      "id": 1,
+      "term": "Term-I",
+      "working": "50",
+      "total": "100"
+    }
+  ]
+}
