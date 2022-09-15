@@ -10,14 +10,12 @@ function Home() {
     <div id="container">
       <div id="heading1">First Terminal Examination 2018-19</div>
       <div id="heading2">ACADEMIC PERFORMANCE</div>
+
       <div id="section">
         <div className="box1">
-          
-
           <FirstPart />
         </div>
         <div className="box2">
-          
           <SecondPart />
         </div>
       </div>

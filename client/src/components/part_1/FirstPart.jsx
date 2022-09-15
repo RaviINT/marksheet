@@ -3,19 +3,27 @@ import "../../styles/part_1/FirstPart.css";
 import Table from "react-bootstrap/Table";
 import data from "../../data/data.json";
 import FirstPartModal from "../modals/FirstPartModal";
+import { useSelector, useDispatch } from "react-redux";
+import { MdClear } from "react-icons/md";
+import { remove_subject } from "../../redux/actions/actions";
 
 function FirstPart() {
   const [sum, setSum] = useState(0);
   const [show, setShow] = useState(false);
+  const [edit, setEdit] = useState(false);
+  const [editData, setEditData] = useState(null);
+  const { part_1 } = useSelector((state) => state.CardReducer);
+  const dispatch = useDispatch();
   console.log("data", data);
   useEffect(() => {
     var res = 0;
-    for (var i = 0; i < data.part_1.length; i++) {
-      res += data.part_1[i].total;
+    for (var i = 0; i < part_1.length; i++) {
+      res +=
+        part_1[i].fa + part_1[i].fa_oral + part_1[i].sa + part_1[i].sa_oral;
     }
     setSum(res);
     console.log(res);
-  }, []);
+  }, [part_1]);
   return (
     <div id="box">
       <div id="part_1" onClick={() => setShow(true)}>
@@ -54,15 +62,33 @@ function FirstPart() {
         </thead>
 
         <tbody className="tableBody">
-          {data.part_1.map((e) => (
-            <tr key={e.id}>
-              <td>{e.id}</td>
-              <td style={{ fontWeight: "bold" }}>{e.subject}</td>
+          {part_1.map((e, i) => (
+            <tr key={i}>
+              <td>{i + 1}</td>
+              <td
+                style={{ fontWeight: "bold" }}
+                onClick={() => {
+                  setEditData(e);
+                  setShow(true);
+                  setEdit(true);
+                }}
+              >
+                {e.subject}
+                <sup>
+                  <MdClear
+                    onClick={() => dispatch(remove_subject(part_1, i))}
+                    color="red"
+                    style={{ cursor: "pointer" }}
+                  />
+                </sup>
+              </td>
               <td>{e.fa}</td>
               <td>{e.fa_oral}</td>
               <td>{e.sa}</td>
               <td>{e.sa_oral}</td>
-              <td style={{ fontWeight: "bold" }}>{e.total}</td>
+              <td style={{ fontWeight: "bold" }}>
+                {e.fa + e.fa_oral + e.sa + e.sa_oral}
+              </td>
             </tr>
           ))}
           <tr>
@@ -81,7 +107,7 @@ function FirstPart() {
             </td>
 
             <td colSpan={6} className="btm_name">
-              {(sum / 1000) * 100}%
+              {((sum / 1000) * 100).toFixed(2)}%
             </td>
           </tr>
 
@@ -96,7 +122,13 @@ function FirstPart() {
           </tr>
         </tbody>
       </Table>
-      <FirstPartModal show={show} setShow={setShow} />
+      <FirstPartModal
+        show={show}
+        setShow={setShow}
+        edit={edit}
+        setEdit={setEdit}
+        editData={editData}
+      />
     </div>
   );
 }
