@@ -53,7 +53,7 @@ function Footer() {
               <td>Need to study</td>
             </tr>
             <tr>
-              <td style={{ border: "1px solid black" }}>51-60</td>
+              <td style={{ border: "1px solid black" }}>41-50</td>
               <td style={{ border: "1px solid black" }}>C2</td>
               <td>Poor</td>
             </tr>

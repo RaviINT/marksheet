@@ -13,22 +13,81 @@ const initialState = {
   part_1: [],
   part_2: [],
   part_3: [],
+  grade: "",
+  remarks: "",
+  sum: 0,
 };
+const arr = [
+  { MIN: 91, MAX: 100, GRADES: "A1", REMARKS: "Excellent" },
+  { MIN: 81, MAX: 90, GRADES: "A2", REMARKS: "Very Good" },
+  { MIN: 71, MAX: 80, GRADES: "B1", REMARKS: "Good" },
+  { MIN: 61, MAX: 70, GRADES: "B2", REMARKS: "Average" },
+  { MIN: 51, MAX: 60, GRADES: "C1", REMARKS: "Need to study" },
+  { MIN: 41, MAX: 50, GRADES: "C2", REMARKS: "Poor" },
+  { MIN: 0, MAX: 40, GRADES: "D", REMARKS: "Fail" },
+];
+function returnGradesAndRemarks(number, key) {
+  let print;
+  arr.forEach((e) => {
+    if (e.MIN <= number && e.MAX >= number) {
+      console.log(e);
+      print = e[key];
+    }
+  });
+  return print;
+}
 const CardReducer = (state = initialState, { type, payload, index }) => {
   switch (type) {
-    case ADD_SUBJECT:
+    case ADD_SUBJECT: {
       console.log("pay", payload);
+      let sum = 0;
+      for (let i = 0; i < [...state.part_1, payload].length; i++) {
+        sum +=
+          [...state.part_1, payload][i].fa +
+          [...state.part_1, payload][i].fa_oral +
+          [...state.part_1, payload][i].sa +
+          [...state.part_1, payload][i].sa_oral;
+      }
+
+      const grade = returnGradesAndRemarks(
+        Math.ceil((sum / 800) * 100).toFixed(2),
+        "GRADES"
+      );
+      // const cgpa=Math.ceil((sum / 800) * 100).toFixed(2)
+      const remarks = returnGradesAndRemarks(
+        Math.ceil((sum / 800) * 100).toFixed(2),
+        "REMARKS"
+      );
+      console.log(returnGradesAndRemarks(100, "REMARKS"), sum);
       return {
         ...state,
         part_1: [...state.part_1, payload],
+        grade: grade,
+        remarks: remarks,
       };
+    }
     case REMOVE_SUBJECT: {
       const filter = state.part_1.filter((e, i) => i !== index);
       const AfterDeleteSub = filter;
-
+      let sum = 0;
+      for (let i = 0; i < filter.length; i++) {
+        sum +=
+          filter[i].fa + filter[i].fa_oral + filter[i].sa + filter[i].sa_oral;
+      }
+      const grade = returnGradesAndRemarks(
+        Math.ceil((sum / 800) * 100).toFixed(2),
+        "GRADES"
+      );
+      // const cgpa=Math.ceil((sum / 800) * 100).toFixed(2)
+      const remarks = returnGradesAndRemarks(
+        Math.ceil((sum / 800) * 100).toFixed(2),
+        "REMARKS"
+      );
       return {
         ...state,
         part_1: AfterDeleteSub,
+        grade: grade,
+        remarks: remarks,
       };
     }
     case EDIT_SUBJECT: {
@@ -109,6 +168,7 @@ const CardReducer = (state = initialState, { type, payload, index }) => {
         part_3: edit_days,
       };
     }
+
     default:
       return state;
   }

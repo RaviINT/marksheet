@@ -5,7 +5,8 @@ import {
   ADD_SKILLS,
   REMOVE_SKILLS,
   EDIT_SKILLS,
-  ADD_DAYS,REMOVE_DAYS,EDIT_DAYS
+  ADD_DAYS,REMOVE_DAYS,EDIT_DAYS,
+  
 } from "../actionTypes/actionTypes";
 export const add_subject = (data) => {
   return {

@@ -4,8 +4,11 @@ import Footer from "../footer/Footer";
 import FirstPart from "../part_1/FirstPart";
 import SecondPart from "../part_2/SecondPart";
 import ThirdPart from "../part_3/ThirdPart";
+import { useSelector } from "react-redux";
 
 export const Home = forwardRef((props, ref) => {
+  const { grade, remarks } = useSelector((state) => state.CardReducer);
+
   return (
     <div id="container" ref={ref}>
       <div id="heading1">First Terminal Examination 2018-19</div>
@@ -23,11 +26,14 @@ export const Home = forwardRef((props, ref) => {
         <ThirdPart />
       </div>
       <div id="cgp">
-        <div className="cgp_name">C.P.G : 9.7</div>
-        <div className="cgp_name">Grade : A1</div>
+        {/* <div className="cgp_name">C.P.G : 9.7</div> */}
+        <div className="cgp_name">Grade : {grade}</div>
+        <div>
+          <span id="remark">Teacher Remarks-</span>
+          <span id="exce">{remarks}</span>
+        </div>
       </div>
-      <span id="remark">Teacher Remarks-</span>
-      <span id="exce">Excellent</span>
+
       <div id="sign">
         <div>Teachers Signture</div>
         <div>Parents Signature</div>

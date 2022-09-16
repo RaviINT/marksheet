@@ -9,3 +9,4 @@ export const EDIT_SKILLS = "EDIT_SKILLS";
 export const ADD_DAYS = "ADD_DAYS";
 export const REMOVE_DAYS = "REMOVE_DAYS";
 export const EDIT_DAYS = "EDIT_DAYS";
+

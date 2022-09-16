@@ -12,7 +12,7 @@ function FirstPart() {
   const [show, setShow] = useState(false);
   const [edit, setEdit] = useState(false);
   const [editData, setEditData] = useState(null);
-  const { part_1 } = useSelector((state) => state.CardReducer);
+  const { part_1, grade } = useSelector((state) => state.CardReducer);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -22,8 +22,10 @@ function FirstPart() {
         part_1[i].fa + part_1[i].fa_oral + part_1[i].sa + part_1[i].sa_oral;
     }
     setSum(res);
+
     console.log(res);
   }, [part_1]);
+
   return (
     <div id="box">
       <div id="part_1" onClick={() => setShow(true)}>
@@ -112,7 +114,7 @@ function FirstPart() {
             </td>
 
             <td colSpan={6} className="btm_name">
-              {((sum / 1000) * 100).toFixed(2)}%
+              {((sum / 800) * 100).toFixed(2)}%
             </td>
           </tr>
 
@@ -122,7 +124,7 @@ function FirstPart() {
             </td>
 
             <td colSpan={6} className="btm_name">
-              D
+              {grade}
             </td>
           </tr>
         </tbody>
