@@ -42,7 +42,7 @@ function FirstPart() {
             <th rowSpan={2} className="tableHead col-sm-1">
               SL No
             </th>
-            <th className="tableHead  col-sm-6" rowSpan={2}>
+            <th className="tableHead " rowSpan={2}>
               SUBJECTS
             </th>
 

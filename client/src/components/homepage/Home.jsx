@@ -5,9 +5,9 @@ import FirstPart from "../part_1/FirstPart";
 import SecondPart from "../part_2/SecondPart";
 import ThirdPart from "../part_3/ThirdPart";
 
-function Home() {
+export const Home = React.forwardRef((props, ref) => {
   return (
-    <div id="container">
+    <div id="container" ref={ref}>
       <div id="heading1">First Terminal Examination 2018-19</div>
       <div id="heading2">ACADEMIC PERFORMANCE</div>
 
@@ -38,6 +38,4 @@ function Home() {
       </div>
     </div>
   );
-}
-
-export default Home;
+  })
