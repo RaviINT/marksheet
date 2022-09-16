@@ -4,21 +4,7 @@ import Footer from "../footer/Footer";
 import FirstPart from "../part_1/FirstPart";
 import SecondPart from "../part_2/SecondPart";
 import ThirdPart from "../part_3/ThirdPart";
-import { renderToString } from "react-dom/server";
-import jsPDF from "jspdf";
-const print = () => {
-  const string = renderToString(
-    <div id="sign">
-      <div>Teachers Signture</div>
-      <div>Parents Signature</div>
-      <div>Principle Signature</div>
-    </div>
-  );
-  const pdf = new jsPDF("p", "mm", "a4");
 
-  pdf.fromHTML(string);
-  pdf.save("pdf");
-};
 function Home() {
   return (
     <div id="container">
@@ -50,7 +36,6 @@ function Home() {
       <div>
         <Footer />
       </div>
-      <button onClick={print}>print</button>
     </div>
   );
 }
