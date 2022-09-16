@@ -12,3 +12,8 @@
   font-weight: bold;
   text-transform: uppercase;
 }
+@media print {
+  .nikal {
+    display: none !important;
+  }
+}

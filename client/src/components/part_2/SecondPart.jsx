@@ -34,7 +34,7 @@ function SecondPart() {
             <th rowSpan={1} style={{ fontSize: "20px", paddingTop: "42px" }}>
               Grade
             </th>
-            <th style={{ fontSize: "20px" }}>Actions</th>
+            <th className="nikal" style={{ fontSize: "20px" }}>Actions</th>
           </tr>
         </thead>
 
@@ -43,7 +43,7 @@ function SecondPart() {
             <tr key={e.id}>
               <td>{e.skills}</td>
               <td>{e.grade}</td>
-              <td>
+              <td className="nikal">
                 <FiEdit
                   onClick={() => {
                     setEditData(e);

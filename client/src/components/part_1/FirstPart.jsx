@@ -51,7 +51,9 @@ function FirstPart() {
             <th>SA</th>
             <th>Oral</th>
             <th>Overall</th>
-            <th rowSpan={2}>Actions</th>
+            <th className="nikal" rowSpan={2}>
+              Actions
+            </th>
           </tr>
           <tr>
             <td>40</td>
@@ -74,7 +76,7 @@ function FirstPart() {
               <td style={{ fontWeight: "bold" }}>
                 {e.fa + e.fa_oral + e.sa + e.sa_oral}
               </td>
-              <td>
+              <td className="nikal">
                 <FiEdit
                   onClick={() => {
                     setEditData(e);

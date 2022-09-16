@@ -35,3 +35,8 @@ td {
   color: blue;
   font-size: 20px;
 }
+@media print {
+  .nikal {
+    display: none !important;
+  }
+}

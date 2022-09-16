@@ -32,7 +32,9 @@ function ThirdPart() {
               <th rowSpan={2}>No of Working Days</th>
               <th rowSpan={2}>No of Total Days</th>
               <th rowSpan={2}>Percentage</th>
-              <th rowSpan={2}>Actions</th>
+              <th className="nikal" rowSpan={2}>
+                Actions
+              </th>
             </tr>
           </thead>
 
@@ -45,7 +47,7 @@ function ThirdPart() {
                 <td className="term">
                   {((e.working / 100) * 100).toFixed(2)}%
                 </td>
-                <td>
+                <td className="nikal">
                   <FiEdit
                     onClick={() => {
                       setEditData(e);

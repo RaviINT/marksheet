@@ -24,7 +24,7 @@ function App() {
   return (
     <>
       <Home ref={componentRef} />
-      <div className="print_download_btn_div">
+      <div className="print_download_btn_div" id="element-to-hide" data-html2canvas-ignore="true">
         <button onClick={handlePrint}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
