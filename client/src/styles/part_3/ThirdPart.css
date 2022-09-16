@@ -12,6 +12,9 @@
   font-weight: bold;
   text-transform: uppercase;
 }
+#working {
+  margin-left: 20px;
+}
 @media print {
   .nikal {
     display: none !important;

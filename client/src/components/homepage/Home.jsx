@@ -1,11 +1,11 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import "../../styles/home/Home.css";
 import Footer from "../footer/Footer";
 import FirstPart from "../part_1/FirstPart";
 import SecondPart from "../part_2/SecondPart";
 import ThirdPart from "../part_3/ThirdPart";
 
-export const Home = React.forwardRef((props, ref) => {
+export const Home = forwardRef((props, ref) => {
   return (
     <div id="container" ref={ref}>
       <div id="heading1">First Terminal Examination 2018-19</div>
@@ -38,4 +38,5 @@ export const Home = React.forwardRef((props, ref) => {
       </div>
     </div>
   );
-  })
+});
+Home.displayName = "Home";

@@ -8,6 +8,13 @@
   color: blue;
   font-size: 20px;
 }
+#skills {
+  width: 200px;
+}
+#grade {
+  margin-left: 20px;
+  width: 130px;
+}
 @media print {
   .nikal {
     display: none !important;
