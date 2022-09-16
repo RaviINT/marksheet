@@ -73,7 +73,7 @@ function FirstPartModal({ show, setShow, edit, setEdit, editData }) {
     <div>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Add your Subjects</Modal.Title>
+          <Modal.Title>{edit ? "Edit" : "Add"} your Subject</Modal.Title>
         </Modal.Header>
         <Formik
           initialValues={{
@@ -116,7 +116,7 @@ function FirstPartModal({ show, setShow, edit, setEdit, editData }) {
                   disabled={edit}
                 >
                   <option value="" disabled>
-                    Select
+                    Select Subject
                   </option>
                   {edit ? (
                     <>

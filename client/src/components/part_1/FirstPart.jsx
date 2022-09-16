@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "../../styles/part_1/FirstPart.css";
 import Table from "react-bootstrap/Table";
-import data from "../../data/data.json";
 import FirstPartModal from "../modals/FirstPartModal";
 import { useSelector, useDispatch } from "react-redux";
-import { MdClear } from "react-icons/md";
 import { remove_subject } from "../../redux/actions/actions";
+import { FiEdit } from "react-icons/fi";
+import { MdDelete } from "react-icons/md";
 
 function FirstPart() {
   const [sum, setSum] = useState(0);
@@ -14,7 +14,7 @@ function FirstPart() {
   const [editData, setEditData] = useState(null);
   const { part_1 } = useSelector((state) => state.CardReducer);
   const dispatch = useDispatch();
-  console.log("data", data);
+
   useEffect(() => {
     var res = 0;
     for (var i = 0; i < part_1.length; i++) {
@@ -51,6 +51,7 @@ function FirstPart() {
             <th>SA</th>
             <th>Oral</th>
             <th>Overall</th>
+            <th rowSpan={2}>Actions</th>
           </tr>
           <tr>
             <td>40</td>
@@ -65,29 +66,31 @@ function FirstPart() {
           {part_1.map((e, i) => (
             <tr key={i}>
               <td>{i + 1}</td>
-              <td
-                style={{ fontWeight: "bold" }}
-                onClick={() => {
-                  setEditData(e);
-                  setShow(true);
-                  setEdit(true);
-                }}
-              >
-                {e.subject}
-                <sup>
-                  <MdClear
-                    onClick={() => dispatch(remove_subject(part_1, i))}
-                    color="red"
-                    style={{ cursor: "pointer" }}
-                  />
-                </sup>
-              </td>
+              <td style={{ fontWeight: "bold" }}>{e.subject} </td>
               <td>{e.fa}</td>
               <td>{e.fa_oral}</td>
               <td>{e.sa}</td>
               <td>{e.sa_oral}</td>
               <td style={{ fontWeight: "bold" }}>
                 {e.fa + e.fa_oral + e.sa + e.sa_oral}
+              </td>
+              <td>
+                <FiEdit
+                  onClick={() => {
+                    setEditData(e);
+                    setShow(true);
+                    setEdit(true);
+                  }}
+                  color="blue"
+                  size={18}
+                  style={{ cursor: "pointer" }}
+                />
+                <MdDelete
+                  onClick={() => dispatch(remove_subject(part_1, i))}
+                  color="red"
+                  size={20}
+                  style={{ marginLeft: "10px", cursor: "pointer" }}
+                />
               </td>
             </tr>
           ))}
