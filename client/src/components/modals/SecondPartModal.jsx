@@ -1,6 +1,7 @@
 import React from "react";
 import Modal from "react-bootstrap/Modal";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import "../../styles/modals/SecondPartModal.css";
@@ -39,19 +40,28 @@ function SecondPartModal({ show, setShow, edit, setEdit, editData }) {
     dispatch(add_skills(values));
     setShow(false);
     setEdit(false);
+    toast.success("Skill is successfully Added", {
+      position: "bottom-right",
+    });
   }
   function editSkills(values) {
     console.log("i", values);
     dispatch(edit_skills(values));
     setShow(false);
     setEdit(false);
+    toast.success("Skill is successfully Edited", {
+      position: "bottom-right",
+    });
   }
   const selectedSkills = part_2.map((ele) => ele.skills);
   return (
     <div>
+      <ToastContainer />
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>{edit ? "Edit" : "Add"} your Skills</Modal.Title>
+          <Modal.Title id="head">
+            {edit ? "Edit" : "Add"} your Skills
+          </Modal.Title>
         </Modal.Header>
         <Formik
           initialValues={{

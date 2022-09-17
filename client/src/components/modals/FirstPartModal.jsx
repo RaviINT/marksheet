@@ -1,6 +1,7 @@
 import React from "react";
 import Modal from "react-bootstrap/Modal";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import "../../styles/modals/FirstPartModal.css";
@@ -56,24 +57,34 @@ function FirstPartModal({ show, setShow, edit, setEdit, editData }) {
     setShow(false);
     setEdit(false);
   };
+  
   function addSubject(values) {
     console.log("i", values);
     dispatch(add_subject(values));
     setShow(false);
     setEdit(false);
+    toast.success("Subject is successfully Added", {
+      position: "bottom-right",
+    });
   }
   function editSubject(values) {
     // console.log("iiid", id);
     dispatch(edit_subject(values));
     setShow(false);
     setEdit(false);
+    toast.success("Subject is successfully Edited", {
+      position: "bottom-right",
+    });
   }
   const selectedSubjects = part_1.map((ele) => ele.subject);
   return (
     <div>
+      <ToastContainer />
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>{edit ? "Edit" : "Add"} your Subject</Modal.Title>
+          <Modal.Title id="head">
+            {edit ? "Edit" : "Add"} your Subject
+          </Modal.Title>
         </Modal.Header>
         <Formik
           initialValues={{
@@ -116,7 +127,7 @@ function FirstPartModal({ show, setShow, edit, setEdit, editData }) {
                   disabled={edit}
                 >
                   <option value="" disabled>
-                    Select Subject
+                    Select One Subject
                   </option>
                   {edit ? (
                     <>
@@ -148,7 +159,7 @@ function FirstPartModal({ show, setShow, edit, setEdit, editData }) {
                     <label>FA</label>
                     <input
                       id="fa"
-                      placeholder="Enter FA Marks"
+                      placeholder="Min-10 & Max-40"
                       type="number"
                       value={values.fa}
                       onChange={handleChange}
@@ -168,7 +179,7 @@ function FirstPartModal({ show, setShow, edit, setEdit, editData }) {
                     <label>FA Oral</label>
                     <input
                       id="fa_oral"
-                      placeholder="Enter FA Oral Marks"
+                      placeholder="Min-1 & Max-10"
                       type="number"
                       value={values.fa_oral}
                       onChange={handleChange}
@@ -187,7 +198,7 @@ function FirstPartModal({ show, setShow, edit, setEdit, editData }) {
                     <label>SA</label>
                     <input
                       id="sa"
-                      placeholder="Enter SA Marks"
+                      placeholder="Min-10 & Max-40"
                       type="number"
                       value={values.sa}
                       onChange={handleChange}
@@ -206,7 +217,7 @@ function FirstPartModal({ show, setShow, edit, setEdit, editData }) {
                     <label>SA Oral</label>
                     <input
                       id="sa_oral"
-                      placeholder="Enter SA Oral Marks"
+                      placeholder="Min-1 & Max-10"
                       type="number"
                       value={values.sa_oral}
                       onChange={handleChange}

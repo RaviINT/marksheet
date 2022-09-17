@@ -4,6 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { add_days, edit_days } from "../../redux/actions/actions";
 import * as Yup from "yup";
 import { Formik } from "formik";
+import "../../styles/modals/ThirdPartModal.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const SignupSchema = Yup.object().shape({
   working: Yup.number()
@@ -24,20 +27,29 @@ function ThirdPartModal({ show, setShow, edit, setEdit, editData }) {
     dispatch(add_days(values));
     setShow(false);
     setEdit(false);
+    toast.success("Attendence is successfully Added", {
+      position: "bottom-right",
+    });
   }
   function editdays(values) {
     console.log("i", values);
     dispatch(edit_days(values));
     setShow(false);
     setEdit(false);
+    toast.success("Attendence is successfully Added", {
+      position: "bottom-right",
+    });
   }
   const term = ["Term-I", "Term-II"];
   const selectedTerm = part_3.map((ele) => ele.term);
   return (
     <div>
+      <ToastContainer />
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>{edit ? "Edit" : "Add"} your Subject</Modal.Title>
+          <Modal.Title id="head">
+            {edit ? "Edit" : "Add"} your Attendence
+          </Modal.Title>
         </Modal.Header>
         <Formik
           initialValues={{
@@ -106,10 +118,10 @@ function ThirdPartModal({ show, setShow, edit, setEdit, editData }) {
               <div>
                 <div className="con">
                   <div className="input_box">
-                    <label>Working</label>
+                    <label id="label">Working</label>
                     <input
                       id="working"
-                      placeholder="Enter FA Marks"
+                      placeholder="Max 100"
                       type="number"
                       value={values.working}
                       onChange={handleChange}

@@ -1,7 +1,7 @@
 #fa {
   margin-left: 25px;
   border: none;
-  border-bottom: 1px solid black;
+  border-bottom: 2px solid black;
 }
 #fa:focus {
   outline: none;
@@ -9,7 +9,7 @@
 #fa_oral {
   margin-left: 25px;
   border: none;
-  border-bottom: 1px solid black;
+  border-bottom: 2px solid black;
 }
 #fa_oral:focus {
   outline: none;
@@ -17,7 +17,7 @@
 #sa {
   margin-left: 25px;
   border: none;
-  border-bottom: 1px solid black;
+  border-bottom: 2px solid black;
 }
 #sa:focus {
   outline: none;
@@ -25,7 +25,7 @@
 #sa_oral {
   margin-left: 25px;
   border: none;
-  border-bottom: 1px solid black;
+  border-bottom: 2px solid black;
 }
 #sa_oral:focus {
   outline: none;
@@ -42,18 +42,21 @@
 }
 label {
   /* float: left; */
-  /* border: 1px solid; */
+  /* border: 2px solid; */
   width: 70px;
-  text-align: center;
-  background: rgb(208, 205, 205);
+  text-align: left  ;
+  /* background: rgb(208, 205, 205); */
   border-radius: 5px;
   font-weight: bold;
   padding: 5px;
+  /* color: white; */
+  /* background-image: linear-gradient(#e80a89 0%, #f15b2a 100%); */
 }
 #btn {
-  background-color: blue;
+  background-image: linear-gradient(to right, #e80a89 0%, #f15b2a 100%);
   color: white;
   border-radius: 8px;
+  border: none;
   padding: 5px;
   width: 100px;
   margin: 20px;
@@ -61,12 +64,42 @@ label {
   cursor: pointer;
   margin-top: 20px;
 }
+#btn:hover {
+  background-color: white;
+  background: linear-gradient(#e80a89 0%, #f15b2a 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  border: 2px solid #e80a89;
+}
 .con {
   /* border: 1px solid; */
-  display: flex;
-  justify-content: center;
+  /* display: flex; */
+  /* justify-content: space-evenly; */
   /* align-items: center;    */
   flex-direction: column;
   width: 60%;
   margin: auto;
+}
+/* #con {
+  background-color: linear-gradient(#e80a89 0%, #f15b2a 100%);
+} */
+#subject {
+  width: 200px;
+  /* border: none; */
+  border-radius: 7px;
+  height: 35px;
+  font-size: 20px;
+  /* color: white; */
+  /* background-image: linear-gradient(to right, #e80a89 0%, #f15b2a 100%); */
+}
+#subject > option {
+  color: black;
+}
+#head {
+  background: linear-gradient(#e80a89 0%, #f15b2a 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+input {
+  font-size: 20px;
 }

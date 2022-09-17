@@ -1,7 +1,7 @@
 #con {
   background-color: linear-gradient(#e80a89 0%, #f15b2a 100%);
 }
-#skills {
+#term {
   width: 200px;
   /* border: none; */
   border-radius: 7px;
@@ -10,7 +10,7 @@
   /* color: white; */
   /* background-image: linear-gradient(to right, #e80a89 0%, #f15b2a 100%); */
 }
-#skills > option {
+#term > option {
   color: black;
 }
 #head {
@@ -20,8 +20,17 @@
 }
 input {
   font-size: 20px;
+  border: none;
+  border-bottom: 2px solid black;
 }
 #grade {
   font-size: 18px;
   /* width: ; */
+}
+input:focus {
+  outline: none;
+}
+#label {
+  padding-left: 5px;
+  padding-right: 5px;
 }

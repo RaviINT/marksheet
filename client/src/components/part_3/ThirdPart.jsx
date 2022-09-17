@@ -6,6 +6,8 @@ import ThirdPartModal from "../modals/ThirdPartModal";
 import { MdDelete } from "react-icons/md";
 import { FiEdit } from "react-icons/fi";
 import { remove_days } from "../../redux/actions/actions";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function ThirdPart() {
   const [show, setShow] = useState(false);
@@ -15,7 +17,19 @@ function ThirdPart() {
   const dispatch = useDispatch();
   return (
     <div>
-      <div className="heading" onClick={() => setShow(true)}>
+      <ToastContainer />
+      <div
+        className="heading"
+        onClick={() => {
+          if (part_3.length == 2) {
+            toast.error("All Terms are added", {
+              position: "bottom-right",
+            });
+            return;
+          }
+          setShow(true);
+        }}
+      >
         Part-III Attendence
       </div>
       <div id="table">
@@ -59,7 +73,12 @@ function ThirdPart() {
                     style={{ cursor: "pointer" }}
                   />
                   <MdDelete
-                    onClick={() => dispatch(remove_days(part_3, i))}
+                    onClick={() => {
+                      dispatch(remove_days(part_3, i));
+                      toast.success("Term is Deleted", {
+                        position: "bottom-right",
+                      });
+                    }}
                     color="red"
                     size={20}
                     style={{ marginLeft: "10px", cursor: "pointer" }}

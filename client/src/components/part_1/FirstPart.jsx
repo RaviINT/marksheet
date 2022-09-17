@@ -6,7 +6,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { remove_subject } from "../../redux/actions/actions";
 import { FiEdit } from "react-icons/fi";
 import { MdDelete } from "react-icons/md";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { CgPlayListAdd } from "react-icons/cg";
 function FirstPart() {
   const [sum, setSum] = useState(0);
   const [show, setShow] = useState(false);
@@ -28,9 +30,8 @@ function FirstPart() {
 
   return (
     <div id="box">
-      <div id="part_1" onClick={() => setShow(true)}>
-        Part-I Scholastic Areas
-      </div>
+      <ToastContainer />
+      <div id="part_1">Part-I Scholastic Areas</div>
       <Table
         striped
         bordered
@@ -44,8 +45,22 @@ function FirstPart() {
             <th rowSpan={2} className="tableHead col-sm-1">
               SL No
             </th>
-            <th className="tableHead " rowSpan={2}>
-              SUBJECTS
+            <th>
+              <CgPlayListAdd
+                size={25}
+                style={{ marginBottom: "-4px", cursor: "pointer" }}
+                color="green"
+                onClick={() => {
+                  if (part_1.length == 8) {
+                    toast.error("All Subjects are added", {
+                      position: "bottom-right",
+                    });
+                    return;
+                  }
+                  setShow(true);
+                }}
+                className="nikal"
+              />
             </th>
 
             <th>FA</th>
@@ -58,6 +73,10 @@ function FirstPart() {
             </th>
           </tr>
           <tr>
+            <td className="tableHead" style={{ fontWeight: "bold" }}>
+              SUBJECTS
+            </td>
+
             <td>40</td>
             <td>10</td>
             <td>40</td>
@@ -90,7 +109,12 @@ function FirstPart() {
                   style={{ cursor: "pointer" }}
                 />
                 <MdDelete
-                  onClick={() => dispatch(remove_subject(part_1, i))}
+                  onClick={() => {
+                    dispatch(remove_subject(part_1, i));
+                    toast.success("Subject is Deleted", {
+                      position: "bottom-right",
+                    });
+                  }}
                   color="red"
                   size={20}
                   style={{ marginLeft: "10px", cursor: "pointer" }}
