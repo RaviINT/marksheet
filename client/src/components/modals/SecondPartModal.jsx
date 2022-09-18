@@ -40,7 +40,7 @@ function SecondPartModal({ show, setShow, edit, setEdit, editData }) {
     dispatch(add_skills(values));
     setShow(false);
     setEdit(false);
-    toast.success("Skill is successfully Added", {
+    toast.success(`${values.skills} is successfully Added`, {
       position: "bottom-right",
     });
   }
@@ -49,7 +49,7 @@ function SecondPartModal({ show, setShow, edit, setEdit, editData }) {
     dispatch(edit_skills(values));
     setShow(false);
     setEdit(false);
-    toast.success("Skill is successfully Edited", {
+    toast.success(`${values.skills} is successfully Edited`, {
       position: "bottom-right",
     });
   }

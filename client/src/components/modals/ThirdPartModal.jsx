@@ -27,7 +27,7 @@ function ThirdPartModal({ show, setShow, edit, setEdit, editData }) {
     dispatch(add_days(values));
     setShow(false);
     setEdit(false);
-    toast.success("Attendence is successfully Added", {
+    toast.success(`${values.term} is successfully Added`, {
       position: "bottom-right",
     });
   }
@@ -36,7 +36,7 @@ function ThirdPartModal({ show, setShow, edit, setEdit, editData }) {
     dispatch(edit_days(values));
     setShow(false);
     setEdit(false);
-    toast.success("Attendence is successfully Added", {
+    toast.success(`${values.term} is successfully Edited`, {
       position: "bottom-right",
     });
   }

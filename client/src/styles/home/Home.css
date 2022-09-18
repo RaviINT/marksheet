@@ -64,3 +64,8 @@
     display: block;
   }
 }
+@media print {
+  #section {
+    display: block;
+  }
+}

@@ -15,6 +15,10 @@
   margin-left: 20px;
   width: 130px;
 }
+#icon {
+  cursor: pointer;
+  padding: 0px;
+}
 @media print {
   .nikal {
     display: none !important;

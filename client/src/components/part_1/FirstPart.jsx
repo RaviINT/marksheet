@@ -111,7 +111,7 @@ function FirstPart() {
                 <MdDelete
                   onClick={() => {
                     dispatch(remove_subject(part_1, i));
-                    toast.success("Subject is Deleted", {
+                    toast.success(`${e.subject} is Deleted`, {
                       position: "bottom-right",
                     });
                   }}

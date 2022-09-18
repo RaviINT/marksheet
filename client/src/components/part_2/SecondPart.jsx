@@ -8,6 +8,7 @@ import { MdDelete } from "react-icons/md";
 import { FiEdit } from "react-icons/fi";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { CgPlayListAdd } from "react-icons/cg";
 function SecondPart() {
   const [show, setShow] = useState(false);
   const [edit, setEdit] = useState(false);
@@ -18,20 +19,7 @@ function SecondPart() {
   return (
     <div id="box">
       <ToastContainer />
-      <div
-        id="part_2"
-        onClick={() => {
-          if (part_2.length == 9) {
-            toast.error("All Skills are added", {
-              position: "bottom-right",
-            });
-            return;
-          }
-          setShow(true);
-        }}
-      >
-        Part-II Co-Scholastic Areas
-      </div>
+      <div id="part_2">Part-II Co-Scholastic Areas</div>
       <Table
         striped
         bordered
@@ -41,21 +29,44 @@ function SecondPart() {
       >
         <thead>
           <tr>
-            <th rowSpan={1} style={{ fontSize: "20px" }}>
-              Skills
+            <th rowSpan={2} className="tableHead col-sm-1">
+              SL No
             </th>
-            <th rowSpan={1} style={{ fontSize: "20px", paddingTop: "42px" }}>
-              Grade
+            <th>
+              <CgPlayListAdd
+                size={25}
+                style={{ marginBottom: "-4px", cursor: "pointer" }}
+                color="green"
+                onClick={() => {
+                  if (part_2.length == 9) {
+                    toast.error("All Skills are added", {
+                      position: "bottom-right",
+                    });
+                    return;
+                  }
+                  setShow(true);
+                }}
+                className="nikal"
+              />
             </th>
-            <th className="nikal" style={{ fontSize: "20px" }}>
+
+            <th rowSpan={2}>Grade</th>
+            <th className="nikal" rowSpan={2}>
               Actions
             </th>
+          </tr>
+          <tr>
+            <td className="tableHead" style={{ fontWeight: "bold" }}>
+              Skills
+            </td>
+            {/* <td>Grade</td> */}
           </tr>
         </thead>
 
         <tbody>
           {part_2.map((e, i) => (
             <tr key={e.id}>
+              <td>{i + 1}</td>
               <td style={{ fontWeight: "bold" }}>{e.skills}</td>
               <td>{e.grade}</td>
               <td className="nikal">
@@ -72,7 +83,7 @@ function SecondPart() {
                 <MdDelete
                   onClick={() => {
                     dispatch(remove_skills(part_2, i));
-                    toast.success("Skill is Deleted", {
+                    toast.success(`${e.skills} is Deleted`, {
                       position: "bottom-right",
                     });
                   }}

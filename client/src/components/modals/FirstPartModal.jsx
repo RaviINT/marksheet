@@ -57,13 +57,13 @@ function FirstPartModal({ show, setShow, edit, setEdit, editData }) {
     setShow(false);
     setEdit(false);
   };
-  
+
   function addSubject(values) {
     console.log("i", values);
     dispatch(add_subject(values));
     setShow(false);
     setEdit(false);
-    toast.success("Subject is successfully Added", {
+    toast.success(`${values.subject} is successfully Added`, {
       position: "bottom-right",
     });
   }
@@ -72,7 +72,7 @@ function FirstPartModal({ show, setShow, edit, setEdit, editData }) {
     dispatch(edit_subject(values));
     setShow(false);
     setEdit(false);
-    toast.success("Subject is successfully Edited", {
+    toast.success(`${values.subject} is successfully Edited`, {
       position: "bottom-right",
     });
   }

@@ -8,7 +8,7 @@ import { FiEdit } from "react-icons/fi";
 import { remove_days } from "../../redux/actions/actions";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import { CgPlayListAdd } from "react-icons/cg";
 function ThirdPart() {
   const [show, setShow] = useState(false);
   const [edit, setEdit] = useState(false);
@@ -18,20 +18,28 @@ function ThirdPart() {
   return (
     <div>
       <ToastContainer />
-      <div
-        className="heading"
-        onClick={() => {
-          if (part_3.length == 2) {
-            toast.error("All Terms are added", {
-              position: "bottom-right",
-            });
-            return;
-          }
-          setShow(true);
-        }}
-      >
-        Part-III Attendence
+
+      <div style={{ textAlign: "center" }}>
+        <span>
+          <CgPlayListAdd
+            color="green"
+            className="nikal"
+            size={25}
+            style={{ cursor: "pointer" }}
+            onClick={() => {
+              if (part_3.length == 2) {
+                toast.error("All Terms are added", {
+                  position: "bottom-right",
+                });
+                return;
+              }
+              setShow(true);
+            }}
+          />
+        </span>
+        <span className="heading">Part-III Attendence</span>
       </div>
+
       <div id="table">
         <Table
           striped
@@ -42,7 +50,7 @@ function ThirdPart() {
         >
           <thead>
             <tr>
-              <th rowSpan={2}></th>
+              <th rowSpan={2}>Term</th>
               <th rowSpan={2}>No of Working Days</th>
               <th rowSpan={2}>No of Total Days</th>
               <th rowSpan={2}>Percentage</th>
@@ -75,7 +83,7 @@ function ThirdPart() {
                   <MdDelete
                     onClick={() => {
                       dispatch(remove_days(part_3, i));
-                      toast.success("Term is Deleted", {
+                      toast.success(`${e.term} is Deleted`, {
                         position: "bottom-right",
                       });
                     }}
