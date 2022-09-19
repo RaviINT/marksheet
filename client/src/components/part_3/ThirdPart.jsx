@@ -50,11 +50,19 @@ function ThirdPart() {
         >
           <thead>
             <tr>
-              <th rowSpan={2}>Term</th>
-              <th rowSpan={2}>No of Working Days</th>
-              <th rowSpan={2}>No of Total Days</th>
-              <th rowSpan={2}>Percentage</th>
-              <th className="nikal" rowSpan={2}>
+              <th rowSpan={2} className="per">
+                Term
+              </th>
+              <th rowSpan={2} className="per">
+                No of Working Days
+              </th>
+              <th rowSpan={2} className="per">
+                No of Total Days
+              </th>
+              <th rowSpan={2} className="per">
+                Percentage
+              </th>
+              <th className="nikal per" rowSpan={2}>
                 Actions
               </th>
             </tr>
@@ -63,34 +71,38 @@ function ThirdPart() {
           <tbody>
             {part_3.map((e, i) => (
               <tr key={e.id}>
-                <td className="term">{e.term}</td>
-                <td className="term">{e.working}</td>
-                <td className="term">100</td>
-                <td className="term">
+                <td className="term per">{e.term}</td>
+                <td className="term per">{e.working}</td>
+                <td className="term per">100</td>
+                <td className="term per">
                   {((e.working / 100) * 100).toFixed(2)}%
                 </td>
-                <td className="nikal">
-                  <FiEdit
-                    onClick={() => {
-                      setEditData(e);
-                      setShow(true);
-                      setEdit(true);
-                    }}
-                    color="blue"
-                    size={18}
-                    style={{ cursor: "pointer" }}
-                  />
-                  <MdDelete
-                    onClick={() => {
-                      dispatch(remove_days(part_3, i));
-                      toast.success(`${e.term} is Deleted`, {
-                        position: "bottom-right",
-                      });
-                    }}
-                    color="red"
-                    size={20}
-                    style={{ marginLeft: "10px", cursor: "pointer" }}
-                  />
+                <td className="nikal" id="action">
+                  <div>
+                    <FiEdit
+                      onClick={() => {
+                        setEditData(e);
+                        setShow(true);
+                        setEdit(true);
+                      }}
+                      color="blue"
+                      size={18}
+                      style={{ cursor: "pointer" }}
+                    />
+                  </div>
+                  <div>
+                    <MdDelete
+                      onClick={() => {
+                        dispatch(remove_days(part_3, i));
+                        toast.success(`${e.term} is Deleted`, {
+                          position: "bottom-right",
+                        });
+                      }}
+                      color="red"
+                      size={20}
+                      style={{ marginLeft: "10px", cursor: "pointer" }}
+                    />
+                  </div>
                 </td>
               </tr>
             ))}

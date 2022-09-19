@@ -5,7 +5,9 @@ import FirstPart from "../part_1/FirstPart";
 import SecondPart from "../part_2/SecondPart";
 import ThirdPart from "../part_3/ThirdPart";
 import { useSelector } from "react-redux";
-
+import img1 from "../../assets/1.png";
+import img2 from "../../assets/2.png";
+import img3 from "../../assets/3.png";
 export const Home = forwardRef((props, ref) => {
   const { grade, remarks } = useSelector((state) => state.CardReducer);
 
@@ -15,13 +17,14 @@ export const Home = forwardRef((props, ref) => {
       <div id="heading2">ACADEMIC PERFORMANCE</div>
 
       <div id="section">
-        <div className="box1">
+        <div className="box1" >
           <FirstPart />
         </div>
-        <div className="box2">
+        <div className="box2" >
           <SecondPart />
         </div>
       </div>
+      <hr />
       <div>
         <ThirdPart />
       </div>
@@ -35,9 +38,21 @@ export const Home = forwardRef((props, ref) => {
       </div>
 
       <div id="sign">
-        <div>Teachers Signture</div>
-        <div>Parents Signature</div>
-        <div>Principle Signature</div>
+        <div className="imgBox">
+          <img src={img1} alt="" className="img" />
+
+          <div style={{ textAlign: "center" }}>Teachers Signture</div>
+        </div>
+        <div className="imgBox">
+          <img src={img2} alt="" className="img" />
+
+          <div style={{ textAlign: "center" }}>Parents Signature</div>
+        </div>
+        <div className="imgBox">
+          <img src={img3} alt="" className="img" />
+
+          <div style={{ textAlign: "center" }}>Principle Signature</div>
+        </div>
       </div>
       <div>
         <Footer />

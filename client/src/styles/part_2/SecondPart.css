@@ -1,6 +1,6 @@
 #part_2 {
-  border-bottom: 1px solid black;
-  border-left: 1px solid black;
+  /* border-bottom: 1px solid black; */
+  /* border-left: 2px solid black; */
   width: 100%;
   height: 30px;
   text-align: center;
@@ -18,6 +18,11 @@
 #icon {
   cursor: pointer;
   padding: 0px;
+}
+@media screen and (max-width: 312px) {
+  #part_2 {
+    font-size: 15px;
+  }
 }
 @media print {
   .nikal {

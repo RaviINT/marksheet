@@ -68,7 +68,7 @@ function FirstPart() {
             <th>SA</th>
             <th>Oral</th>
             <th>Overall</th>
-            <th className="nikal" rowSpan={2}>
+            <th className="nikal" id="action" rowSpan={2}>
               Actions
             </th>
           </tr>
@@ -89,7 +89,7 @@ function FirstPart() {
           {part_1.map((e, i) => (
             <tr key={i}>
               <td>{i + 1}</td>
-              <td style={{ fontWeight: "bold" }}>{e.subject} </td>
+              <td className="subName">{e.subject} </td>
               <td>{e.fa}</td>
               <td>{e.fa_oral}</td>
               <td>{e.sa}</td>
@@ -97,28 +97,32 @@ function FirstPart() {
               <td style={{ fontWeight: "bold" }}>
                 {e.fa + e.fa_oral + e.sa + e.sa_oral}
               </td>
-              <td className="nikal">
-                <FiEdit
-                  onClick={() => {
-                    setEditData(e);
-                    setShow(true);
-                    setEdit(true);
-                  }}
-                  color="blue"
-                  size={18}
-                  style={{ cursor: "pointer" }}
-                />
-                <MdDelete
-                  onClick={() => {
-                    dispatch(remove_subject(part_1, i));
-                    toast.success(`${e.subject} is Deleted`, {
-                      position: "bottom-right",
-                    });
-                  }}
-                  color="red"
-                  size={20}
-                  style={{ marginLeft: "10px", cursor: "pointer" }}
-                />
+              <td className="nikal" id="actionDiv" style={{ border: "none" }}>
+                <div>
+                  <FiEdit
+                    onClick={() => {
+                      setEditData(e);
+                      setShow(true);
+                      setEdit(true);
+                    }}
+                    color="blue"
+                    size={18}
+                    style={{ cursor: "pointer" }}
+                  />
+                </div>
+                <div>
+                  <MdDelete
+                    onClick={() => {
+                      dispatch(remove_subject(part_1, i));
+                      toast.success(`${e.subject} is Deleted`, {
+                        position: "bottom-right",
+                      });
+                    }}
+                    color="red"
+                    size={20}
+                    style={{ cursor: "pointer" }}
+                  />
+                </div>
               </td>
             </tr>
           ))}

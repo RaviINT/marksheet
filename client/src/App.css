@@ -36,3 +36,21 @@
     transform: rotate(360deg);
   }
 }
+#element-to-hide {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  position: absolute;
+  right: 17%;
+  top: 8px;
+}
+@media screen and (max-width: 600px) {
+  #element-to-hide {
+    right: 5%;
+  }
+}
+@media screen and (max-width: 355px) {
+  #element-to-hide {
+    right: 1%;
+  }
+}

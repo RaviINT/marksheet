@@ -8,7 +8,11 @@
 #table {
   width: 98%;
   margin: auto;
-  overflow-x: auto;
+  /* overflow-x: auto; */
+}
+#action {
+  display: flex;
+  justify-content: space-evenly;
 }
 .term {
   font-weight: bold;
@@ -25,5 +29,19 @@
   }
   #nikal {
     display: none !important;
+  }
+}
+@media screen and (max-width: 312px) {
+  #action {
+    display: block;
+  }
+  .per {
+    font-size: 12px;
+  }
+  #table {
+    width: 100%;
+  }
+  .heading {
+    font-size: 15px;
   }
 }

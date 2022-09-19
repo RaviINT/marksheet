@@ -24,7 +24,7 @@ function SecondPartModal({ show, setShow, edit, setEdit, editData }) {
     "Attitude",
     "Responsilbility",
     "Self Confidence",
-    "Participations in Group Work",
+    "Group Work",
     "Neetness",
     "Music",
     "Disciplane",
