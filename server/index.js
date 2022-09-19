@@ -6,6 +6,7 @@ app.use(express.json());
 //GET Route
 app.get("/student", async (req, res) => {
   try {
+    // const list = await client.query("SELECT name FROM students"); // for sepecifc field
     const list = await client.query("SELECT * FROM students");
     res.send(list.rows);
   } catch (err) {
