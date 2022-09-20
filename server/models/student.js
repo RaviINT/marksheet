@@ -3,7 +3,7 @@ module.exports = {
   get: client
     .query("SELECT * FROM students")
     .then((results) => {
-      return results;
+      return results.rows;
     })
     .catch((err) => console.log("getClient", err.message)),
 
@@ -11,7 +11,7 @@ module.exports = {
     client
       .query("INSERT INTO students (name) VALUES ($1) RETURNING *", [name])
       .then((res) => {
-        return callBackFunction(null, res.rows);
+        return callBackFunction(res.rows);
       })
       .catch((err) => console.log("postClient", err.message));
   },
@@ -19,7 +19,7 @@ module.exports = {
     client
       .query("DELETE FROM students WHERE id=$1", [id])
       .then(() => {
-        return callBackFunction(null, "deleted");
+        return callBackFunction("deleted");
       })
       .catch((err) => console.log("removeClient", err.message));
   },
@@ -27,7 +27,7 @@ module.exports = {
     client
       .query("SELECT * FROM students WHERE id=$1", [id])
       .then((results) => {
-        return callBackFunction(null, results.rows);
+        return callBackFunction(results.rows);
       })
       .catch((err) => console.log("getByIdClient", err.message));
   },

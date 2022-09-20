@@ -1,49 +1,48 @@
 const { get, post, remove, getById, updateById } = require("../models/student");
+
 module.exports = {
-  getUser: (req, res) => {
-    get
-      .then((results) => res.json(results.rows))
-      .catch((err) => console.log("getErr", err.message));
+  getUser: async (req, res) => {
+    try {
+      const data = await get;
+      res.json(data);
+    } catch (err) {
+      console.log("getErr", err.message);
+    }
   },
   postUser: async (req, res) => {
-    post(req.body.name, (err, results) => {
-      if (results) {
+    try {
+      await post(req.body.name, (results) => {
         res.json(results);
-      }
-      if (err) {
-        console.log(err);
-      }
-    });
+      });
+    } catch (err) {
+      console.log("postErr", err.message);
+    }
   },
-  deleteUser: (req, res) => {
-    console.log(req.body.id);
-    remove(req.body.id, (err, results) => {
-      if (results) {
-        res.send(results);
-      }
-      if (err) {
-        console.log(err);
-      }
-    });
+  deleteUser: async (req, res) => {
+    try {
+      await remove(req.body.id, (results) => {
+        res.json(results);
+      });
+    } catch (err) {
+      console.log("deleteErr", err.message);
+    }
   },
   getById: (req, res) => {
-    getById(req.body.id, (err, resuts) => {
-      if (resuts) {
-        res.json(resuts);
-      }
-      if (err) {
-        console.log(err);
-      }
-    });
+    try {
+      getById(req.body.id, (results) => {
+        res.json(results);
+      });
+    } catch (err) {
+      console.log("getErr", err.message);
+    }
   },
   updateById: (req, res) => {
-    updateById(req.body.id, req.body.name, (err, results) => {
-      if (results) {
-        res.send("Updated");
-      }
-      if (err) {
-        console.log(err);
-      }
-    });
+    try {
+      updateById(req.body.id, req.body.name, (results) => {
+        res.json(results);
+      });
+    } catch (err) {
+      console.log("updateErr", err.message);
+    }
   },
 };
