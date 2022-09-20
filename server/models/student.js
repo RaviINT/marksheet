@@ -1,27 +1,41 @@
 const client = require("../configuration/client");
 module.exports = {
-  get: client
-    .query("SELECT * FROM students")
-    .then((results) => {
-      return results.rows;
-    })
-    .catch((err) => console.log("getClient", err.message)),
-
-  post: (name, callBackFunction) => {
-    client
-      .query("INSERT INTO students (name) VALUES ($1) RETURNING *", [name])
-      .then((res) => {
-        return callBackFunction(res.rows);
-      })
-      .catch((err) => console.log("postClient", err.message));
+  get: () => {
+    return new Promise(function (resolve, reject) {
+      try {
+        let data = client.query("SELECT * FROM students");
+        resolve(data);
+      } catch (err) {
+        reject(err);
+      }
+    });
   },
-  remove: (id, callBackFunction) => {
-    client
-      .query("DELETE FROM students WHERE id=$1", [id])
-      .then(() => {
-        return callBackFunction("deleted");
-      })
-      .catch((err) => console.log("removeClient", err.message));
+
+  post: (name) => {
+    return new Promise(function (resolve, reject) {
+      try {
+        const addData = client.query(
+          "INSERT INTO students (name) VALUES ($1) RETURNING *",
+          [name]
+        );
+        resolve(addData);
+      } catch (err) {
+        reject(err.message);
+      }
+    });
+  },
+  remove: (id) => {
+    return new Promise((resolve, reject) => {
+      try {
+        
+        let delData = client.query("DELETE FROM students WHERE id=$1", [id]);
+        
+        resolve({delD:delData});
+        
+      } catch (err) {
+        reject({ERR:err.message});
+      }
+    });
   },
   getById: (id, callBackFunction) => {
     client

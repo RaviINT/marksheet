@@ -3,26 +3,25 @@ const { get, post, remove, getById, updateById } = require("../models/student");
 module.exports = {
   getUser: async (req, res) => {
     try {
-      const data = await get;
-      res.json(data);
+      const data = await get();
+      res.json(data.rows);
     } catch (err) {
       console.log("getErr", err.message);
     }
   },
   postUser: async (req, res) => {
     try {
-      await post(req.body.name, (results) => {
-        res.json(results);
-      });
+      let data=await post(req.body.name)
+      res.json(data.rows);
     } catch (err) {
       console.log("postErr", err.message);
     }
   },
   deleteUser: async (req, res) => {
     try {
-      await remove(req.body.id, (results) => {
-        res.json(results);
-      });
+      let delData=await remove(req.body.id)
+      res.send(delData)
+      // console.log("delData", delData)
     } catch (err) {
       console.log("deleteErr", err.message);
     }
