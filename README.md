@@ -1,5 +1,7 @@
 # Things to do
 
+JOI
+
 db validation
 
 params validation
