@@ -27,31 +27,33 @@ module.exports = {
   remove: (id) => {
     return new Promise((resolve, reject) => {
       try {
-        
         let delData = client.query("DELETE FROM students WHERE id=$1", [id]);
-        
-        resolve({delD:delData});
-        
+
+        resolve(delData);
       } catch (err) {
-        reject({ERR:err.message});
+        reject(err.message);
       }
     });
   },
-  getById: (id, callBackFunction) => {
-    client
-      .query("SELECT * FROM students WHERE id=$1", [id])
-      .then((results) => {
-        return callBackFunction(results.rows);
-      })
-      .catch((err) => console.log("getByIdClient", err.message));
+  getById: (id) => {
+    return new Promise((resolve, reject) => {
+      try {
+        let data = client.query("SELECT * FROM students WHERE id=$1", [id]);
+        resolve(data);
+      } catch (err) {
+        reject(err.message);
+      }
+    });
   },
   updateById: (id, name, callBackFunction) => {
-    client
-      .query("UPDATE students SET name =$1 WHERE id=$2", [name, id])
-      .then((results) => {
-        console.log("results", results);
-        return callBackFunction(null, results);
+    
+      return new Promise((resolve, reject) => {
+        try{
+          let updateData = client.query("UPDATE students SET name =$1 WHERE id=$2", [name, id])
+          resolve(updateData);
+        }catch (err) {
+          reject(err);
+        }
       })
-      .catch((err) => console.log("updateByIdClient", err.message));
   },
 };

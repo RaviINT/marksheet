@@ -4,7 +4,13 @@ module.exports = {
   getUser: async (req, res) => {
     try {
       const data = await get();
-      res.json(data.rows);
+      if(data.rows.length==0){
+        res.send("Something went wrong. Please try again")
+      }
+      else{
+        res.json(data.rows);
+      }
+      
     } catch (err) {
       console.log("getErr", err.message);
     }
@@ -38,20 +44,27 @@ module.exports = {
       console.log("deleteErr", err.message);
     }
   },
-  getById: (req, res) => {
+  getById: async(req, res) => {
     try {
-      getById(req.body.id, (results) => {
-        res.json(results);
-      });
+      let data=await getById(req.body.id)
+      console.log("getById", data)
+      if(data.rows==0){
+        res.send("User not found")
+      }else{
+        res.json(data.rows)
+      }
     } catch (err) {
       console.log("getErr", err.message);
     }
   },
-  updateById: (req, res) => {
+  updateById:async (req, res) => {
     try {
-      updateById(req.body.id, req.body.name, (results) => {
-        res.json(results);
-      });
+      let updateData=await updateById(req.body.id, req.body.name)
+      if(updateData.rowCount>0){
+        res.send("User updated successfully")
+      }else{
+        res.send("User not updated")
+      }
     } catch (err) {
       console.log("updateErr", err.message);
     }
