@@ -33,7 +33,8 @@ module.exports = {
   },
   deleteUser: async (req, res) => {
     try {
-      let delData=await remove(req.body.id)
+      
+      let delData=await remove(req.params.id)
       if(delData.rowCount>0){
         res.send("User deleted successfully")
       }else{
@@ -46,7 +47,7 @@ module.exports = {
   },
   getById: async(req, res) => {
     try {
-      let data=await getById(req.body.id)
+      let data=await getById(req.params.id)
       console.log("getById", data)
       if(data.rows==0){
         res.send("User not found")
@@ -59,7 +60,7 @@ module.exports = {
   },
   updateById:async (req, res) => {
     try {
-      let updateData=await updateById(req.body.id, req.body.name)
+      let updateData=await updateById(req.params.id, req.body.name)
       if(updateData.rowCount>0){
         res.send("User updated successfully")
       }else{
