@@ -6,7 +6,7 @@ params validation
 
 body validation
 
-entities
+html entities
 
 env 
 
