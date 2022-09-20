@@ -12,7 +12,15 @@ module.exports = {
   postUser: async (req, res) => {
     try {
       let data=await post(req.body.name)
-      res.json(data.rows);
+      if(data.rows.length!=0){
+        res.json({
+          msg:"User added successfully",
+          row:data.rows
+        });
+      }else{
+        res.send("Something went wrong" )
+      }
+      
     } catch (err) {
       console.log("postErr", err.message);
     }
@@ -20,8 +28,12 @@ module.exports = {
   deleteUser: async (req, res) => {
     try {
       let delData=await remove(req.body.id)
-      res.send(delData)
-      // console.log("delData", delData)
+      if(delData.rowCount>0){
+        res.send("User deleted successfully")
+      }else{
+        res.send("User not deleted")
+      }
+
     } catch (err) {
       console.log("deleteErr", err.message);
     }
