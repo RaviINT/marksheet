@@ -4,8 +4,8 @@ const { validateBodyLogin } = require("../validations/body/login.validator");
 module.exports = {
   getUser: async (req, res) => {
     try {
-      console.log("new",req.user.email)
-      let data = await get(req.user.email);
+      console.log("new==>>>>>>",req.user[0].email)
+      let data = await get(req.user[0].email);
       if (data.rows.length == 0) {
         res.send("No Users found");
       } else {

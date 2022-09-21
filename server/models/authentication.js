@@ -3,6 +3,7 @@ module.exports = {
   get: (email) => {
     return new Promise(function (resolve, reject) {
       try {
+        console.log("getete",email)
         let data = client.query("SELECT * from data WHERE email=$1", [email]);
         resolve(data);
       } catch (err) {
