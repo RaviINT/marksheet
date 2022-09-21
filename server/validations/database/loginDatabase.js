@@ -13,6 +13,7 @@ const validation = async (req, res, next) => {
     return res.send(error.details);
   }
 
+
   const data = await client.query("SELECT * FROM data WHERE email=$1", [
     value.email,
   ]);
