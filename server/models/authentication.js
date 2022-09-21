@@ -1,21 +1,21 @@
 const client = require("../configuration/client");
 module.exports = {
-  get: () => {
+  get: (email) => {
     return new Promise(function (resolve, reject) {
       try {
-        let data = client.query("SELECT * from data");
+        let data = client.query("SELECT * from data WHERE email=$1", [email]);
         resolve(data);
       } catch (err) {
         reject(err);
       }
     });
   },
-  post: (email,password) => {
+  post: (email, password) => {
     return new Promise(function (resolve, reject) {
       try {
         const addData = client.query(
           "INSERT INTO data (email,password) VALUES ($1,$2) RETURNING *",
-          [email,password]
+          [email, password]
         );
         resolve(addData);
       } catch (err) {
@@ -26,12 +26,13 @@ module.exports = {
   getById: (email) => {
     return new Promise(function (resolve, reject) {
       try {
-        let data = client.query("SELECT password from data WHERE email=$1",[email]);
+        let data = client.query("SELECT password from data WHERE email=$1", [
+          email,
+        ]);
         resolve(data);
       } catch (err) {
         reject(err);
       }
     });
   },
-
 };

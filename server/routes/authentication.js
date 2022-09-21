@@ -1,8 +1,10 @@
 const router = require("express").Router();
-const { getUser, getUserById, post } = require("../controllers/authentication");
+const { getUser, getToken, post } = require("../controllers/authentication");
 const authenticationToken = require("../passport/login");
-const validation =require("../validations/database/loginDatabase")
-router.get("/", getUser);
-router.get("/:email", validation, authenticationToken, getUserById);
-router.post("/", post);
+const validation = require("../validations/database/loginDatabase");
+const checkTable = require("../validations/repeat/check");
+// router.get("/", getUser);
+router.get("/", authenticationToken, getUser);
+router.post("/", checkTable, post);
+router.post("/getToken", getToken);
 module.exports = router;

@@ -4,6 +4,7 @@ const validator = (schema) => (payload) =>
 
 const loginBodySchema = Joi.object({
   email: Joi.string().email().required(),
+  password:Joi.string().required(),
 });
 
 exports.validateBodyLogin = validator(loginBodySchema);
