@@ -4,6 +4,7 @@ module.exports = {
     return new Promise(function (resolve, reject) {
       try {
         let data = client.query("SELECT * FROM students");
+        
         resolve(data);
       } catch (err) {
         reject(err);
