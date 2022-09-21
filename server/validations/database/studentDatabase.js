@@ -1,5 +1,5 @@
-const client = require("../configuration/client");
-const { validateParamsStudent } = require("./student.validator");
+const client = require("../../configuration/client");
+const { validateParamsStudent } = require("../body/student.validator");
 const validation = async (req, res, next) => {
   const { error, value } = validateParamsStudent(req.params);
   if (error) {

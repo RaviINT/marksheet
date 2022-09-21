@@ -1,8 +1,7 @@
 const { get, post, remove, getById, updateById } = require("../models/student");
 const {
   validateBodyStudent,
-  validateParamsStudent,
-} = require("../validations/student.validator");
+} = require("../validations/body/student.validator");
 
 module.exports = {
   getUser: async (req, res) => {

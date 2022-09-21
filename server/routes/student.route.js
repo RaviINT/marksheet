@@ -6,11 +6,11 @@ const {
   getById,
   updateById,
 } = require("../controllers/student");
-const validation = require("../validations/db.validations")
-router.get("/student", getUser);
-router.post("/student", postUser);
-router.delete("/student/:id", validation,deleteUser);
-router.get("/student/:id", validation,getById);
-router.put("/student/:id", validation,updateById);
+const validation = require("../validations/database/studentDatabase");
+router.get("/", getUser);
+router.post("/", postUser);
+router.delete("/:id", validation, deleteUser);
+router.get("/:id", validation, getById);
+router.put("/:id", validation, updateById);
 
 module.exports = router;
