@@ -51,7 +51,7 @@ function SecondPart() {
             </th>
 
             <th rowSpan={2}>Grade</th>
-            <th className="nikal" rowSpan={2}>
+            <th className="nikal" data-html2canvas-ignore="true" rowSpan={2}>
               Actions
             </th>
           </tr>
@@ -69,7 +69,7 @@ function SecondPart() {
               <td>{i + 1}</td>
               <td style={{ fontWeight: "bold" }}>{e.skills}</td>
               <td>{e.grade}</td>
-              <td className="nikal">
+              <td className="nikal" data-html2canvas-ignore="true">
                 <FiEdit
                   onClick={() => {
                     setEditData(e);

@@ -35,8 +35,6 @@ function App() {
           color="black"
           style={{ cursor: "pointer" }}
         />
-
-        {/* <button >Print</button> */}
       </div>
       <Home ref={componentRef} />
       <div

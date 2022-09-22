@@ -62,7 +62,7 @@ function ThirdPart() {
               <th rowSpan={2} className="per">
                 Percentage
               </th>
-              <th className="nikal per" rowSpan={2}>
+              <th className="nikal per" data-html2canvas-ignore="true" rowSpan={2}>
                 Actions
               </th>
             </tr>
@@ -77,7 +77,7 @@ function ThirdPart() {
                 <td className="term per">
                   {((e.working / 100) * 100).toFixed(2)}%
                 </td>
-                <td className="nikal" id="action">
+                <td className="nikal" data-html2canvas-ignore="true" id="action">
                   <div>
                     <FiEdit
                       onClick={() => {
