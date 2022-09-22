@@ -13,7 +13,7 @@ module.exports={
                     message:"no image found "
                 })
             }
-            return res.json({
+            return res.send({
                 success:1,
                 data:results
             })

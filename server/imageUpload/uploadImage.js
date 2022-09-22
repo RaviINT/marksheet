@@ -11,10 +11,7 @@ let upload = async (req, res) => {
         message: err,
       });
     }
-    return res.status(200).json({
-      success: 1,
-      data: results,
-    });
+    return res.status(200).send("image uploaded succesfully");
   });
 };
 
