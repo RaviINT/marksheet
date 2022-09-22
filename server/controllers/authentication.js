@@ -1,6 +1,7 @@
 const { get, getById, post } = require("../models/authentication");
 const jwt = require("jsonwebtoken");
 const { validateBodyLogin } = require("../validations/body/login.validator");
+const passport=require("passport")
 module.exports = {
   getUser: async (req, res) => {
     try {
@@ -15,17 +16,27 @@ module.exports = {
       res.send(err);
     }
   },
-  getToken: async (req, res) => {
+  getToken: async (req, res,next) => {
     try {
-      const { error, value } = validateBodyLogin(req.body);
-      if (error) {
-        return res.send(error.details);
-      }
+      passport.authenticate("local",(err,user,info)=>{
+        console.log("heer")
+        if(err) return err
+        if(!user) res.send("No user exists")
+        if(user){
+          req.logIn(user,(err)=>{
+            if(err) return err
+            
+            console.log(req.user)
+            const user = {id:req.user.id, email: req.user.email };
+            const accessToken = jwt.sign(user, "1233123213123");
+      
+            res.json({ accessToken: accessToken });
+          })
+        }
+      })(req,res,next)
+      
 
-      const user = { email: value.email, password: value.password };
-      const accessToken = jwt.sign(user, "1233123213123");
-
-      res.json({ accessToken: accessToken });
+     
     } catch (err) {
       res.send(err);
     }

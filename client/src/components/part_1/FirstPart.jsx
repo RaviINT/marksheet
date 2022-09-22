@@ -68,7 +68,8 @@ function FirstPart() {
             <th>SA</th>
             <th>Oral</th>
             <th>Overall</th>
-            <th className="nikal" id="action" rowSpan={2}>
+            <th className="nikal" id="element-to-hide action"
+        data-html2canvas-ignore="true"  rowSpan={2}>
               Actions
             </th>
           </tr>
@@ -97,7 +98,12 @@ function FirstPart() {
               <td style={{ fontWeight: "bold" }}>
                 {e.fa + e.fa_oral + e.sa + e.sa_oral}
               </td>
-              <td className="nikal" id="actionDiv" style={{ border: "none" }}>
+              <td
+                className="nikal"
+                id="element-to-hide actionDiv"
+                data-html2canvas-ignore="true"
+                style={{ border: "none" }}
+              >
                 <div>
                   <FiEdit
                     onClick={() => {

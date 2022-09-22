@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 import img1 from "../../assets/1.png";
 import img2 from "../../assets/2.png";
 import img3 from "../../assets/3.png";
-export const Home = forwardRef(( ref) => {
+export const Home = forwardRef(( props,ref) => {
   const { grade, remarks } = useSelector((state) => state.CardReducer);
 
   return (

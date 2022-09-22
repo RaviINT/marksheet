@@ -1,32 +1,41 @@
-const JwtStrategy = require("passport-jwt").Strategy;
-const ExtractJwt = require("passport-jwt").ExtractJwt;
-const client = require("../configuration/client");
+const bcrypt = require("bcryptjs");
+const localStrategy = require("passport-local").Strategy;
+const client=require("../configuration/client")
 module.exports = function (passport) {
-  // console.log("passport");
   passport.use(
-    new JwtStrategy(
-      {
-        secretOrKey: "1233123213123",
-        jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-      },
-      async function (jwt_payload,next) {
-        
-        await client.query(
-          "SELECT email from data WHERE email=$1",
-          [jwt_payload.email],
-          (err, data) => {
-            if (err) {
-              return next(err, false);
-            }
-            if (data.rows.length>0) {
-              console.log(data.rows)
-              return next(null,data.rows);
-            } else {
-              next(null, false);
-            }
+    
+    new localStrategy(async (username, password, done) => {
+      // console.log("sttt",username,password)
+     await client.query("SELECT * from data WHERE email=$1",[username], (err, user) => {
+      // console.log("s",user.rows)
+        if (err) return done(null, false);;
+        if (user.rows.length==0) return done(null, false);
+        bcrypt.compare(password, user.rows[0].password, (err, result) => {
+          // console.log(result)
+          if (err) return  err;
+          if (result === true) {
+            // console.log("pass",user.rows[0])
+            return done(null, user.rows[0]);
+          } else {
+            return done(null, false);
           }
-        );
-      }
-    )
+        });
+      });
+    })
   );
+
+  passport.serializeUser((user, cb) => {
+    // console.log("seria",user)
+    cb(null, user.id);
+  });
+  passport.deserializeUser(async (id, cb) => {
+    // console.log("id",id)
+    await client.query("SELECT * from data WHERE id=$1",[id], (err, user) => {
+      console.log("user",user.rows[0])
+      const userInformation = {
+        username: user.email,
+      };
+      cb(err, userInformation);
+    });
+  });
 };
