@@ -19,7 +19,7 @@ module.exports = {
   getToken: async (req, res,next) => {
     try {
       passport.authenticate("local",(err,user,info)=>{
-        console.log("heer")
+        
         if(err) return err
         if(!user) res.send("No user exists")
         if(user){
