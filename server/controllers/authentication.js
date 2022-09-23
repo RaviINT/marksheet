@@ -31,8 +31,8 @@ module.exports = {
           createdAt: time,
           createdOn: date,
         };
-        const accessToken = jwt.sign(user, "1233123213123",{
-          expiresIn:"15s"
+        const accessToken = jwt.sign(user, "1233123213123", {
+          expiresIn: "15s",
         });
 
         res.json({ accessToken: accessToken });
