@@ -3,7 +3,7 @@ module.exports = {
   get: () => {
     return new Promise(function (resolve, reject) {
       try {
-        let data = client.query("SELECT * FROM students");
+        let data = client.query("SELECT * FROM data");
         
         resolve(data);
       } catch (err) {
