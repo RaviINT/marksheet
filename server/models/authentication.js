@@ -1,10 +1,9 @@
 const client = require("../configuration/client");
-const bcrypt=require("bcryptjs")
+const bcrypt = require("bcryptjs");
 module.exports = {
   getUserByEmail: (email) => {
     return new Promise(function (resolve, reject) {
       try {
-        
         let data = client.query("SELECT * from data WHERE email=$1", [email]);
         resolve(data);
       } catch (err) {
@@ -12,17 +11,24 @@ module.exports = {
       }
     });
   },
-  post: (email, password) => {
-    return new Promise(async function  (resolve, reject) {
+  post: (value) => {
+    return new Promise(async function (resolve, reject) {
       try {
-        const hashPass=await bcrypt.hash(password,10)
-        console.log("hash",hashPass)
+        // console.log("value==>", value);
+        const hashPass = await bcrypt.hash(value.password, 10);
+        // console.log("hash", hashPass.length);
         const addData = client.query(
-          "INSERT INTO data (email,password) VALUES ($1,$2) RETURNING *",
-          [email, hashPass]
+          "INSERT INTO registration (name,email,password) VALUES ($1,$2,$3)",
+          [value.name, value.email, hashPass],
+          (err, res) => {
+            console.log(res.rowCount)
+            if (res.rowCount > 0) {
+              resolve(true);
+            } else{
+              resolve(false)
+            }
+          }
         );
-        resolve(addData);
-
       } catch (err) {
         reject(err.message);
       }

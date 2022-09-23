@@ -1,7 +1,7 @@
 const { post, getUserByEmail } = require("../models/authentication");
 const jwt = require("jsonwebtoken");
-const { validateBodyLogin } = require("../validations/body/login.validator");
-const passport = require("passport");
+const client = require("../configuration/client");
+
 module.exports = {
   getUserByEmail: async (email) => {
     try {
@@ -14,18 +14,26 @@ module.exports = {
   },
   post: async (req, res) => {
     try {
-      const { error, value } = validateBodyLogin(req.body);
-      if (error) {
-        return res.send(error.details);
-      }
-      let data = await post(value.email, value.password);
-
-      if (data.rows.length == 0) {
-        res.send("No Users found");
+      let data = await post(req.body);
+      console.log("data", data);
+      if (!data) {
+        res.send("Something went wrong");
       } else {
-        const email = req.body.email;
-        const user = { email: email };
-        const accessToken = jwt.sign(user, "1233123213123");
+        const id = await client.query(
+          "SELECT id from registration WHERE email=$1",
+          [req.body.email]
+        );
+        const date = new Date().toLocaleDateString();
+        const time = new Date().toLocaleTimeString();
+
+        const user = {
+          id: id.rows[0].id,
+          createdAt: time,
+          createdOn: date,
+        };
+        const accessToken = jwt.sign(user, "1233123213123",{
+          expiresIn:"15s"
+        });
 
         res.json({ accessToken: accessToken });
       }

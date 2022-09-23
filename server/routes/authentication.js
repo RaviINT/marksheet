@@ -1,12 +1,20 @@
 const router = require("express").Router();
 const { post, genToken } = require("../controllers/authentication");
-
-const validation = require("../validations/database/loginDatabase");
+const validateUser = require("../validations/body/register.validator");
 const checkTable = require("../validations/repeat/check");
-
 const passport = require("passport");
-// require("../passport/passport")(passport);
 
-router.post("/register", checkTable, post);
-router.post("/login", passport.authenticate("local"),genToken);
+router.post(
+  "/register",
+  (req, res, next) => {
+    const { error, value } = validateUser(req.body);
+    // console.log(error, value);
+    if (error) {
+      return res.send(error.details[0].message);
+    }
+    checkTable(value, next, res);
+  },
+  post
+);
+router.post("/login", passport.authenticate("local"), genToken);
 module.exports = router;

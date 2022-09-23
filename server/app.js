@@ -3,9 +3,10 @@ const cors = require("cors");
 const app = express();
 const passport = require("passport");
 const helmet = require("helmet");
-const session = require("express-session");
+const session = require('express-session');
 const cookieParser = require("cookie-parser");
 const initializePassport = require('./passport/passport')
+const port=process.env.PORT|| 5000
 initializePassport(
   passport,
   email => users.find(user => user.email === email),
@@ -35,5 +36,5 @@ app.use("/student", studentRouter);
 app.use("/", loginRouter);
 app.use("/image", imageRouter);
 app.listen(5000, () => {
-  console.log("app is connected");
+  console.log(`app is connected ${5000}`);
 });
