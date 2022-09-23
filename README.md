@@ -1,15 +1,10 @@
 # Things to do
 
-JOI
-
-db validation
-
-params validation
-
-body validation
-
 html entities
 
 env 
 
 config
+
+
+SVz6UYhHq_4_F6C
