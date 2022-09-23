@@ -1,42 +1,13 @@
-const { get, getById, post } = require("../models/authentication");
+const { post, getUserByEmail } = require("../models/authentication");
 const jwt = require("jsonwebtoken");
 const { validateBodyLogin } = require("../validations/body/login.validator");
-const passport=require("passport")
+const passport = require("passport");
 module.exports = {
-  getUser: async (req, res) => {
+  getUserByEmail: async (email) => {
     try {
-      console.log("new==>>>>>>",req.user[0].email)
-      let data = await get(req.user[0].email);
-      if (data.rows.length == 0) {
-        res.send("No Users found");
-      } else {
-        res.json(data.rows);
-      }
-    } catch (err) {
-      res.send(err);
-    }
-  },
-  getToken: async (req, res,next) => {
-    try {
-      passport.authenticate("local",(err,user,info)=>{
-        
-        if(err) return err
-        if(!user) res.send("No user exists")
-        if(user){
-          req.logIn(user,(err)=>{
-            if(err) return err
-            
-            console.log(req.user)
-            const user = {id:req.user.id, email: req.user.email };
-            const accessToken = jwt.sign(user, "1233123213123");
-      
-            res.json({ accessToken: accessToken });
-          })
-        }
-      })(req,res,next)
-      
-
-     
+      const user = await getUserByEmail(email);
+      // console.log("hii",user.rows[0])
+      return user.rows[0];
     } catch (err) {
       res.send(err);
     }
@@ -61,5 +32,11 @@ module.exports = {
     } catch (err) {
       res.send(err);
     }
+  },
+  genToken: (req, res) => {
+    const user = { id: req.user.id, email: req.user.email };
+    const accessToken = jwt.sign(user, "1233123213123");
+
+    res.json({ accessToken: accessToken });
   },
 };
