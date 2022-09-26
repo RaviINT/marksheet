@@ -14,11 +14,13 @@ function Login() {
         password: password,
       })
       .then((res) => {
+        
         if (res.status == 200) {
           return localStorage.setItem("loginToken", res.data.accessToken);
+
         }
         if(res.status==201){
-            console.log("incorrect Password")
+            console.log(res.data.message)
         }
            
         

@@ -8,7 +8,7 @@ function initialize(passport) {
     const user = await getUserByEmail(email);
     
     if (user == undefined) {
-      return done(null, false, { message: "No user with that email" });
+      return done(null, false, { message: "No user with this email" });
     }
 
     try {
