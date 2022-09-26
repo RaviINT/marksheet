@@ -16,6 +16,7 @@ function Login() {
       .then((res) => {
         
         if (res.status == 200) {
+            window.location.href="/dashboard"
           return localStorage.setItem("loginToken", res.data.accessToken);
 
         }
