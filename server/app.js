@@ -31,10 +31,12 @@ app.use(helmet());
 const studentRouter = require("./routes/student.route");
 const loginRouter = require("./routes/authentication");
 const imageRouter = require("./routes/image");
+const subjectRouter=require("./routes/subjects")
 
 app.use("/student", studentRouter);
 app.use("/", loginRouter);
 app.use("/image", imageRouter);
+app.use("/subject", subjectRouter);
 app.listen(5000, () => {
   console.log(`app is connected ${5000}`);
 });

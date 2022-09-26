@@ -29,6 +29,7 @@ module.exports = {
           id: id.rows[0].id,
           createdAt: time,
           createdOn: date,
+          IST:"INT"
         };
         const accessToken = jwt.sign(user, "1233123213123", {
           expiresIn: "15s",

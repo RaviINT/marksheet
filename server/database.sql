@@ -5,11 +5,20 @@ CREATE TABLE Registration(
     password TEXT
 )
 CREATE TABLE Students(
-    id SERIAL PRIMARY KEY,
-    teachers_id VARCHAR(30),
+    id SERIAL,
+    teachers_id int,
     name VARCHAR(20),
-    roll_no INT,
+    roll_no int PRIMARY KEY,
     date_of_birth VARCHAR(20),
     class TEXT,
     division TEXT
+)
+CREATE TABLE subjects(
+    id SERIAL PRIMARY KEY,
+    roll_no int,
+    FOREIGN KEY (roll_no) REFERENCES Students(roll_no) on delete cascade,
+    FA int,
+    FA_ORAL int,
+    SA int,
+    SA_ORAL int
 )
