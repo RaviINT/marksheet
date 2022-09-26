@@ -6,7 +6,6 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  const [err,setErr]=useState("")
   const handleSubmit = () => {
     setLoading(true);
     axios
@@ -18,7 +17,7 @@ function Login() {
         if (res.status == 200) {
           return localStorage.setItem("loginToken", res.data.accessToken);
         }
-        if(res.status==401){
+        if(res.status==201){
             console.log("incorrect Password")
         }
            
@@ -36,7 +35,6 @@ function Login() {
       <button style={{ marginTop: "10px" }} onClick={handleSubmit}>
         Submit
       </button>
-      <div>{err}</div>
     </div>
   );
 }
