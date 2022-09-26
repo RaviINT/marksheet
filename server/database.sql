@@ -22,3 +22,13 @@ CREATE TABLE subjects(
     SA int,
     SA_ORAL int
 )
+CREATE TABLE skills(
+    id SERIAL PRIMARY KEY,
+    roll_no int,
+    FOREIGN KEY (roll_no) REFERENCES Students(roll_no) on delete cascade,
+    development VARCHAR(2),
+    attitude VARCHAR(2),
+    responsibility VARCHAR(2),
+    music VARCHAR(2),
+    hardwork VARCHAR(2)
+)

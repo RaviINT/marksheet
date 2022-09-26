@@ -5,6 +5,7 @@ const {
 const {
   validateUpdateBodyStudent,
 } = require("../validations/body/student.validator");
+const client = require("../configuration/client");
 module.exports = {
   getUser: async (req, res) => {
     try {
@@ -24,14 +25,23 @@ module.exports = {
       return res.send(error.details);
     }
     try {
-      let data = await post(value);
-      if (data.rows.length != 0) {
-        res.json({
-          msg: "student added successfully",
-          row: data.rows,
-        });
+      const checkData =await client.query(
+        "SELECT roll_no FROM students WHERE roll_no=$1",
+        [req.body.roll_no]
+      );
+      console.log(checkData)
+      if (checkData.rows.length == 0) {
+        let data = await post(value);
+        if (data.rows.length != 0) {
+          res.json({
+            msg: "student added successfully",
+            row: data.rows,
+          });
+        } else {
+          res.send("Something went wrong");
+        }
       } else {
-        res.send("Something went wrong");
+        res.send("Student with this Roll Number is already Added");
       }
     } catch (err) {
       console.log("postErr", err.message);
@@ -69,7 +79,7 @@ module.exports = {
         return res.send(error.details);
       }
       let updateData = await updateById(req.params.id, req.body);
-      
+
       if (updateData.rowCount > 0) {
         res.send("User updated successfully");
       } else {
