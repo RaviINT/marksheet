@@ -4,7 +4,7 @@ const checkTable =async (value,next,res)=>{
     const data= await client.query("SELECT email from registration WHERE email=$1",[value.email])
     
     if(data.rows.length>0){
-        return res.send("User is already exists")
+        return res.status(201).send("User is already exists")
     }
     return next()
 }

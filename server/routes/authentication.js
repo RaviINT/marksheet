@@ -28,7 +28,15 @@ router.post(
     next();
     // checkTable(value, next, res);
   },
-  passport.authenticate("local"),
-  genToken
+  (req, res, next) => {
+    passport.authenticate("local", (err, user, message) => {
+      console.log(err,user,message)
+      if (user) {
+        next()
+      } else {
+        return res.status(201).send(message);
+      }
+    })(req, res, next);
+  },genToken
 );
 module.exports = router;

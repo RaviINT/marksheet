@@ -5,7 +5,7 @@ const port = process.env.PORT;
 
 const client = new Client({
   // user: "iorgnzco",
-  // port: 5432,
+  // port: port,
   // password: "BJHVtrurLa1vp4kLX-7KIYwbdBKFS3h9",
   // database: "iorgnzco",
   // host: "tiny.db.elephantsql.com",

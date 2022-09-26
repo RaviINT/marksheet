@@ -29,7 +29,7 @@ module.exports = {
           id: id.rows[0].id,
           createdAt: time,
           createdOn: date,
-          IST:"INT"
+          IST: "INT",
         };
         const accessToken = jwt.sign(user, "1233123213123", {
           expiresIn: "15s",
@@ -42,7 +42,8 @@ module.exports = {
     }
   },
   genToken: (req, res) => {
-    const user = { id: req.user.id, createdAt: time, createdOn: date };
+    console.log(req)
+    const user = { id: req.body.id, createdAt: time, createdOn: date };
     const accessToken = jwt.sign(user, "1233123213123", {
       expiresIn: "5m",
     });

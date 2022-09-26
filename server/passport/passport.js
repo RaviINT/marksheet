@@ -6,6 +6,7 @@ const { getUserByEmail } = require("../controllers/authentication");
 function initialize(passport) {
   const authenticateUser = async (email, password, done) => {
     const user = await getUserByEmail(email);
+    
     if (user == undefined) {
       return done(null, false, { message: "No user with that email" });
     }
