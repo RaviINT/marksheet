@@ -20,13 +20,12 @@ router.post(
 router.post(
   "/login",
   (req, res, next) => {
-    
     const { error, value } = loginValidateUser(req.body);
     // console.log(error)
     if (error) {
       return res.send(error.details[0].message);
     }
-    next()
+    next();
     // checkTable(value, next, res);
   },
   passport.authenticate("local"),

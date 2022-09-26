@@ -2,7 +2,9 @@ const { get, post, remove, getById, updateById } = require("../models/student");
 const {
   validateBodyStudent,
 } = require("../validations/body/student.validator");
-
+const {
+  validateUpdateBodyStudent,
+} = require("../validations/body/student.validator");
 module.exports = {
   getUser: async (req, res) => {
     try {
@@ -22,10 +24,10 @@ module.exports = {
       return res.send(error.details);
     }
     try {
-      let data = await post(value.name);
+      let data = await post(value);
       if (data.rows.length != 0) {
         res.json({
-          msg: "User added successfully",
+          msg: "student added successfully",
           row: data.rows,
         });
       } else {
@@ -54,7 +56,7 @@ module.exports = {
       if (data.rows == 0) {
         res.send("User not found");
       } else {
-        res.json(data.rows);
+        res.json(data.rows[0]);
       }
     } catch (err) {
       console.log("getOneErr", err);
@@ -62,12 +64,12 @@ module.exports = {
   },
   updateById: async (req, res) => {
     try {
-      const { error, value } = validateBodyStudent(req.body);
+      const { error, value } = validateUpdateBodyStudent(req.body);
       if (error) {
-        res.send(error.details);
+        return res.send(error.details);
       }
-
-      let updateData = await updateById(req.params.id, value.name);
+      let updateData = await updateById(req.params.id, req.body);
+      
       if (updateData.rowCount > 0) {
         res.send("User updated successfully");
       } else {

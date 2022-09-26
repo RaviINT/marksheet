@@ -1,7 +1,8 @@
 const { post, getUserByEmail } = require("../models/authentication");
 const jwt = require("jsonwebtoken");
 const client = require("../configuration/client");
-
+const date = new Date().toLocaleDateString();
+const time = new Date().toLocaleTimeString();
 module.exports = {
   getUserByEmail: async (email) => {
     try {
@@ -23,8 +24,6 @@ module.exports = {
           "SELECT id from registration WHERE email=$1",
           [req.body.email]
         );
-        const date = new Date().toLocaleDateString();
-        const time = new Date().toLocaleTimeString();
 
         const user = {
           id: id.rows[0].id,
@@ -42,8 +41,10 @@ module.exports = {
     }
   },
   genToken: (req, res) => {
-    const user = { id: req.user.id, email: req.user.email };
-    const accessToken = jwt.sign(user, "1233123213123");
+    const user = { id: req.user.id, createdAt: time, createdOn: date };
+    const accessToken = jwt.sign(user, "1233123213123", {
+      expiresIn: "15s",
+    });
 
     res.json({ accessToken: accessToken });
   },

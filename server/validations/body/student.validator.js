@@ -4,9 +4,21 @@ const validator = (schema) => (payload) =>
 
 const studentBodySchema = Joi.object({
   name: Joi.string().required(),
+  teachers_id: Joi.string().required(),
+  roll_no: Joi.number().required(),
+  date_of_birth: Joi.string().required(),
+  class: Joi.string().required(),
+  division: Joi.string().required(),
 });
-const studentParamsSchema = Joi.object({
-  id: Joi.number().required().min(1).max(100),
+
+const studentBodyUpdateSchema = Joi.object({
+  name: Joi.string().required(),
+  roll_no: Joi.number().required(),
+  date_of_birth: Joi.string().required(),
+  class: Joi.string().required(),
+  division: Joi.string().required(),
 });
+
 exports.validateBodyStudent = validator(studentBodySchema);
-exports.validateParamsStudent = validator(studentParamsSchema);
+exports.validateUpdateBodyStudent = validator(studentBodyUpdateSchema);
+

@@ -6,22 +6,16 @@ const { getUserByEmail } = require("../controllers/authentication");
 function initialize(passport) {
   const authenticateUser = async (email, password, done) => {
     const user = await getUserByEmail(email);
-    // console.log("user", user, password);
     if (user == undefined) {
       return done(null, false, { message: "No user with that email" });
     }
 
     try {
-      console.log("password", user.password, password);
-      const pass = await bcrypt.compare(user.password, password);
-      console.log("pass", pass);
-      // if (await bcrypt.compare(password, user.password)) {
-      //   console.log("user valid",user)
-      //   return done(null, user);
-      // } else {
-      //   console.log("er")
-      //   return done(null, false, { message: "Password incorrect" });
-      // }
+      if (await bcrypt.compare(password, String(user.password).trim())) {
+        return done(null, user);
+      } else {
+        return done(null, false, { message: "Password incorrect" });
+      }
     } catch (e) {
       return done(e);
     }
@@ -32,13 +26,8 @@ function initialize(passport) {
     cb(null, user.id);
   });
   passport.deserializeUser((id, cb) => {
-    client.query("SELECT * from data WHERE id=$1", [id], (err, user) => {
-      const userInformation = {
-        username: user.email,
-      };
-
-      cb(err, userInformation);
-    });
+    const user = client.query("SELECT * from data WHERE id=$1", [id]);
+    cb(null, user);
   });
 }
 

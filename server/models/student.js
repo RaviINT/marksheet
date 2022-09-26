@@ -1,10 +1,11 @@
+const { object } = require("joi");
 const client = require("../configuration/client");
 module.exports = {
   get: () => {
     return new Promise(function (resolve, reject) {
       try {
-        let data = client.query("SELECT * FROM data");
-        
+        let data = client.query("SELECT * FROM students");
+
         resolve(data);
       } catch (err) {
         reject(err);
@@ -12,12 +13,19 @@ module.exports = {
     });
   },
 
-  post: (name) => {
+  post: (value) => {
     return new Promise(function (resolve, reject) {
       try {
         const addData = client.query(
-          "INSERT INTO students (name) VALUES ($1) RETURNING *",
-          [name]
+          "INSERT INTO students (teachers_id,name,roll_no,date_of_birth,class,division) VALUES ($1,$2,$3,$4,$5,$6) RETURNING *",
+          [
+            value.teachers_id,
+            value.name,
+            value.roll_no,
+            value.date_of_birth,
+            value.class,
+            value.division,
+          ]
         );
         resolve(addData);
       } catch (err) {
@@ -46,15 +54,25 @@ module.exports = {
       }
     });
   },
-  updateById: (id, name, callBackFunction) => {
-    
-      return new Promise((resolve, reject) => {
-        try{
-          let updateData = client.query("UPDATE students SET name =$1 WHERE id=$2", [name, id])
-          resolve(updateData);
-        }catch (err) {
-          reject(err);
-        }
-      })
+  updateById: (id, body) => {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const keys = Object.keys(body);
+        let updateData = await client.query(
+          `UPDATE students SET (name,roll_no,date_of_birth,class,division)=($1,$2,$3,$4,$5) WHERE id=${id}`,
+          [
+            body.name,
+            body.roll_no,
+            body.date_of_birth,
+            body.class,
+            body.division,
+          ]
+        );
+
+        resolve(updateData);
+      } catch (err) {
+        reject(err);
+      }
+    });
   },
 };
