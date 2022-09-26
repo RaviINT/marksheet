@@ -8,6 +8,7 @@ const {
   updateById,
 } = require("../controllers/subject");
 const check_RollNo = require("../validations/repeat/roll_no");
+const admimAuth=require("../helpers/auth.controller")
 router.get(
   "/:id",
   (req, res, next) => {
@@ -27,7 +28,7 @@ router.post(
       return res.send(error.details[0].message);
     }
     check_RollNo(req.body.roll_no, next, res);
-  },
+  },admimAuth,
   addSubject
 );
 router.delete(
@@ -38,7 +39,7 @@ router.delete(
       return res.send(error.details[0].message);
     }
     next();
-  },
+  },admimAuth,
   deleteUser
 );
 router.put(
@@ -50,7 +51,7 @@ router.put(
       }
       next();
     },
-    
+    admimAuth,
     updateById
   );
 module.exports = router;

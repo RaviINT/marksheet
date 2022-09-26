@@ -8,8 +8,11 @@ const {
 } = require("../controllers/student");
 const validation = require("../validations/database/studentDatabase");
 const validateStudentParams = require("../validations/params/student.params");
+const admimAuth=require("../helpers/auth.controller")
+
+
 router.get("/", getUser);
-router.post("/", postUser);
+router.post("/",admimAuth, postUser);
 router.delete(
   "/:id",
   (req, res, next) => {
@@ -19,7 +22,7 @@ router.delete(
     }
     next();
   },
-  validation,
+  validation,admimAuth,
   deleteUser
 );
 router.get(
@@ -43,7 +46,7 @@ router.put(
     }
     next();
   },
-  validation,
+  validation,admimAuth,
   updateById
 );
 

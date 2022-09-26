@@ -1,14 +1,15 @@
 const router = require("express").Router();
 const validateStudentParams = require("../validations/params/student.params");
-const { validateSkillBody } = require("../validations/body/skill.validator");
+const { validateAttendenceBody } = require("../validations/body/attendence");
 const {
-  getSubject,
-  addSkill,
-  deleteUser,
+  getAttendence,
+  addAttendence,
+  deleteAttendence,
   updateById,
-} = require("../controllers/skill");
-const check_Skills = require("../validations/repeat/skill");
+} = require("../controllers/attendence");
+const check_Attendence = require("../validations/repeat/attendence");
 const admimAuth=require("../helpers/auth.controller")
+
 router.get(
   "/:id",
   (req, res, next) => {
@@ -19,18 +20,18 @@ router.get(
     
     next();
   },
-  getSubject
+  getAttendence
 );
 router.post(
   "/",
   (req, res, next) => {
-    const { error, value } = validateSkillBody(req.body);
+    const { error, value } = validateAttendenceBody(req.body);
     if (error) {
       return res.send(error.details[0].message);
     }
-    check_Skills(req.body.roll_no, next, res);
+    check_Attendence(req.body.roll_no, next, res);
   },admimAuth,
-  addSkill
+  addAttendence
 );
 router.delete(
   "/:id",
@@ -41,7 +42,7 @@ router.delete(
     }
     next();
   },admimAuth,
-  deleteUser
+  deleteAttendence
 );
 router.put(
   "/:id",

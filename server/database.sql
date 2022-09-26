@@ -32,3 +32,10 @@ CREATE TABLE skills(
     music VARCHAR(2),
     hardwork VARCHAR(2)
 )
+CREATE TABLE attendence(
+    id SERIAL PRIMARY KEY,
+    roll_no int,
+    FOREIGN KEY (roll_no) REFERENCES Students(roll_no) on delete cascade,
+    term_1 int,
+    term_2 int
+)

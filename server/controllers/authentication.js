@@ -44,7 +44,7 @@ module.exports = {
   genToken: (req, res) => {
     const user = { id: req.user.id, createdAt: time, createdOn: date };
     const accessToken = jwt.sign(user, "1233123213123", {
-      expiresIn: "15s",
+      expiresIn: "5m",
     });
 
     res.json({ accessToken: accessToken });

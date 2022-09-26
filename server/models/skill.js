@@ -4,7 +4,7 @@ module.exports = {
   getSubject: (id) => {
     return new Promise((resolve, reject) => {
       try {
-        let subjects = client.query("SELECT * FROM skills WHERE id=$1", [id]);
+        let subjects = client.query("SELECT * FROM skills WHERE roll_no=$1", [id]);
         resolve(subjects);
       } catch (err) {
         reject(err);

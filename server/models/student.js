@@ -47,7 +47,7 @@ module.exports = {
   getById: (id) => {
     return new Promise((resolve, reject) => {
       try {
-        let data = client.query("SELECT * FROM students WHERE id=$1", [id]);
+        let data = client.query("SELECT * FROM students WHERE roll_no=$1", [id]);
         resolve(data);
       } catch (err) {
         reject(err.message);

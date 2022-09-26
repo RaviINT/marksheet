@@ -4,8 +4,10 @@ module.exports = {
   getSubject: (id) => {
     return new Promise((resolve, reject) => {
       try {
-        let subjects = client.query("SELECT * FROM subjects WHERE roll_no=$1", [id]);
-        resolve(subjects);
+        let attendence = client.query("SELECT * FROM attendence WHERE id=$1", [
+          id,
+        ]);
+        resolve(attendence);
       } catch (err) {
         reject(err);
       }
@@ -15,9 +17,10 @@ module.exports = {
     return new Promise(function (resolve, reject) {
       try {
         const addData = client.query(
-          "INSERT INTO subjects (roll_no,fa,fa_oral,sa,sa_oral) VALUES ($1,$2,$3,$4,$5) RETURNING *",
-          [value.roll_no, value.fa, value.fa_oral, value.sa, value.sa_oral]
+          "INSERT INTO attendence (roll_no,term_1,term_2) VALUES ($1,$2,$3) RETURNING *",
+          [value.roll_no, value.term_1, value.term_2]
         );
+
         resolve(addData);
       } catch (err) {
         reject(err.message);
@@ -27,7 +30,7 @@ module.exports = {
   remove: (id) => {
     return new Promise((resolve, reject) => {
       try {
-        let delData = client.query("DELETE FROM subjects WHERE roll_no=$1", [
+        let delData = client.query("DELETE FROM attendence WHERE roll_no=$1", [
           id,
         ]);
 
@@ -40,10 +43,10 @@ module.exports = {
   updateById: (id, body) => {
     return new Promise(async (resolve, reject) => {
       try {
-        console.log(id,body)
+        console.log(id, body);
         let updateData = await client.query(
-          `UPDATE subjects SET (roll_no,fa,fa_oral,sa,sa_oral)=($1,$2,$3,$4,$5) WHERE roll_no=${id}`,
-          [body.roll_no, body.fa, body.fa_oral, body.sa, body.sa_oral]
+          `UPDATE attendence SET (term_1,term_2)=($1,$2) WHERE roll_no=${id}`,
+          [body.term_1, body.term_2]
         );
         resolve(updateData);
       } catch (err) {
