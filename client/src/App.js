@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, {  useRef } from "react";
 import { Home } from "./components/homepage/Home";
 import { AiFillPrinter } from "react-icons/ai";
 import { useReactToPrint } from "react-to-print";
@@ -7,7 +7,7 @@ import "./App.css";
 import Login from "./components/login/Login";
 import { Routes, Route } from "react-router-dom";
 function App() {
-  const token = localStorage.getItem("loginToken");
+  // const token = localStorage.getItem("loginToken");
   const componentRef = useRef();
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
@@ -53,14 +53,12 @@ function App() {
       </>
     );
   }
+
   return (
     <>
-      <Routes >
-        {token ? (
-          <Route  path="/dashboard" element={<HomeComp />} />
-        ) : (
-          <Route path="/" element={<Login />} />
-        )}
+      <Routes>
+        <Route path="/dashboard" element={<HomeComp />} />
+        <Route path="/" element={<Login />} />
       </Routes>
     </>
   );

@@ -39,3 +39,10 @@ CREATE TABLE attendence(
     term_1 int,
     term_2 int
 )
+CREATE TABLE loginData(
+    id SERIAL PRIMARY KEY,
+    login_date text,
+    login_time text,
+    login_status text,
+    ip text
+)
