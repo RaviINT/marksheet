@@ -1,5 +1,5 @@
 const { post, getUserByEmail } = require("../models/authentication");
-const {storeData}=require("../models/login")
+const { storeData,getData } = require("../models/login");
 const jwt = require("jsonwebtoken");
 const client = require("../configuration/client");
 const date = new Date().toLocaleDateString();
@@ -21,31 +21,49 @@ module.exports = {
       if (!data) {
         res.send("Something went wrong");
       } else {
-        const logged=await storeData({date:date,time:time,status:true,ip:ip_address})
         const id = await client.query(
           "SELECT id from registration WHERE email=$1",
           [req.body.email]
         );
 
-        const user = {
+        const logged = await storeData({
+          date: date,
+          time: time,
+          status: true,
+          ip: req.body.ip,
           id: id.rows[0].id,
-          createdAt: time,
-          createdOn: date,
-          IST: "INT",
-        };
-        const accessToken = jwt.sign(user, "1233123213123", {
-          expiresIn: "24h",
         });
 
-        res.json({ accessToken: accessToken });
+        if (logged.rowCount > 0) {
+          const user = {
+            id: id.rows[0].id,
+            createdAt: time,
+            createdOn: date,
+            IST: "INT",
+          };
+          const accessToken = jwt.sign(user, "1233123213123", {
+            expiresIn: "24h",
+          });
+
+          res.json({ accessToken: accessToken });
+        }else{
+          res.send("something went wrong")
+        }
       }
     } catch (err) {
       res.send(err);
     }
   },
-  genToken: (req, res) => {
-    console.log(req)
-    const user = { id: req.body.id, createdAt: time, createdOn: date,IST:"INT" };
+  genToken:async (req, res,mes) => {
+    
+    const logged=await getData(mes)
+    console.log("idd=>>",logged)
+    const user = {
+      id: mes,
+      createdAt: time,
+      createdOn: date,
+      IST: "INT",
+    };
     const accessToken = jwt.sign(user, "1233123213123", {
       expiresIn: "24h",
     });

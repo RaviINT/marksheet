@@ -32,11 +32,11 @@ router.post(
     passport.authenticate("local", (err, user, message) => {
       console.log(err,user,message)
       if (user) {
-        next()
+        return genToken(req,res,user.id)
       } else {
         return res.status(201).send(message);
       }
     })(req, res, next);
-  },genToken
+  },
 );
 module.exports = router;
